@@ -1,0 +1,10 @@
+.notfound {
+  padding-top: 30vh;
+  text-align: center;
+  width: 100%;
+}
+
+.notfound span {
+  background-color: #fff;
+  padding: 20px;
+}

@@ -17,7 +17,7 @@ import NotFound from './components/NotFound';
 injectTapEventPlugin();
 
 const Boomtown = () => {
-    const pg = 'items';
+    const pg = 'profile';
     let content;
 
     if (pg === 'login') {

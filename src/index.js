@@ -8,38 +8,17 @@ import './index.css';
 import muiTheme from './config/theme';
 
 import Layout from './components/Layout';
-import Login from './containers/Login';
-import Items from './containers/Items';
-import Profile from './containers/Profile';
-import Share from './containers/Share';
-import NotFound from './components/NotFound';
+import Routes from './routes';
 
 injectTapEventPlugin();
 
-const Boomtown = () => {
-    const pg = 'profile';
-    let content;
-
-    if (pg === 'login') {
-        content = <Login />;
-    } else if (pg === 'items') {
-        content = <Items />;
-    } else if (pg === 'profile') {
-        content = <Profile />;
-    } else if (pg === 'share') {
-        content = <Share />;
-    } else {
-        content = <NotFound />;
-    }
-
-    return (
-        <MuiThemeProvider muiTheme={muiTheme}>
-            <Layout pg={pg}>
-                { content }
-            </Layout>
-        </MuiThemeProvider>
-    );
-};
+const Boomtown = () => (
+  <MuiThemeProvider muiTheme={muiTheme}>
+    <Layout>
+      <Routes />
+    </Layout>
+  </MuiThemeProvider>
+);
 
 ReactDOM.render(<Boomtown />, document.getElementById('root'));
 registerServiceWorker();

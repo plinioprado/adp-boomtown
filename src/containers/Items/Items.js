@@ -1,10 +1,11 @@
 import React from 'react';
+import ItemCardList from '../../components/ItemCardList';
 import './styles.css';
 
-const Items = () => (
-    <div className="item">
-        I am an item
-    </div>
+const Items = ({ itemsData }) => (
+  <div className="items">
+    <ItemCardList list={itemsData} />
+  </div>
 );
 
 export default Items;

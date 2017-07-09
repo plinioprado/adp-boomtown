@@ -3,13 +3,13 @@ import './styles.css';
 
 class Share extends Component {
 
-    render() {
-        return (
-            <div className="share">
-                Share goes here.
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="share">
+        Share goes here.
+      </div>
+    );
+  }
 }
 
 export default Share;

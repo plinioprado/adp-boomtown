@@ -1,23 +1,42 @@
 import React, { Component } from 'react';
 import Items from './Items';
 import './styles.css';
+import Loader from '../../components/Loader';
 
 class ItemsContainer extends Component {
 
-    render() {
+  constructor() {
+    super();
+    this.state = {
+      loading: true,
+      itemsData: []
+    };
+  }
 
-        return (
-            <div className="item-container">
-                <Items key={1} />
-                <Items key={2} />
-                <Items key={3} />
-                <Items key={4} />
-                <Items key={5} />
-                <Items key={6} />
-                <Items key={7} />
-            </div>
-        );
-    }
+  componentDidMount() {
+    Promise.all(
+        ['http://localhost:3001/items','http://localhost:3001/users'].map(url => (
+          fetch(url).then(response => response.json())
+        )))
+        .then(json => {
+          const [items, users] = json;
+          const itemsWithOwners = items.map(item => {
+            const itemOwner = users.filter(user => user.id === item.itemOwner);
+            item.itemOwner = itemOwner[0];
+            return item;
+          });
+
+          this.setState({
+            itemsData: itemsWithOwners,
+            loading: false
+          });
+        });
+  }
+
+  render() {
+    if (this.state.loading) return <Loader />;
+    return <Items itemsData={this.state.itemsData} />;
+  }
 }
 
 export default ItemsContainer;

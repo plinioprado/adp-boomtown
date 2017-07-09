@@ -6,10 +6,10 @@ import {
 } from 'material-ui/styles/colors';
 
 export default getMuiTheme({
-    palette: {
-        textColor: blueGrey900,
-        alternateTextColor: white,
-        primary1Color: lightBlue200,
-        accent1Color: blueGrey900
-    }
+  palette: {
+    textColor: blueGrey900,
+    alternateTextColor: white,
+    primary1Color: lightBlue200,
+    accent1Color: blueGrey900
+  }
 });

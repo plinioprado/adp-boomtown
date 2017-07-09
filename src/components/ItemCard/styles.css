@@ -1,0 +1,76 @@
+/* item -card */
+
+.item-card {
+  background-color: #fff;
+  margin: 8px;
+  width: 100%;
+  display: inline-block;
+  font-size: 14px;
+  padding: 0;
+}
+
+@media(min-width: 576px) {
+  .item-card {
+    width: calc(50% - 16px);
+  }
+}
+
+@media(min-width: 768px) {
+  .item-card {
+    width: calc(33% - 24px);
+  }
+}
+
+.item-card>img {
+  z-index: 1;
+  width: 100%;
+}
+
+.item-status {
+  z-index: 2;
+  position: relative;
+  top: -63px;
+  height: 56px;
+  padding: 16px;
+  color: rgba(255, 255, 255, 0.54);
+  background: rgba(0, 0, 0, 0.54);
+  text-transform: uppercase;
+  display: inline-block;
+  width: 100%;
+}
+
+.item-block {
+  padding: 16px;
+}
+
+.item-owner-image {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 16px;
+  float: left;
+}
+
+.item-owner-fullName {
+  color: rgba(38, 50, 56, 0.87);
+  font-size: 15px;
+}
+
+.item-createdOn {
+  color: rgba(38, 50, 56, 0.54);
+}
+
+.item-title {
+  font-size: 24px;
+  color: rgba(38, 50, 56, 0.87);
+  line-height: 36px;
+}
+
+.item-tags {
+  color: rgba(38, 50, 56, 0.54);
+}
+
+.item-button {
+  margin: 8px;
+}
+
+

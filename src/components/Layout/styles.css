@@ -11,3 +11,10 @@
   width: 100%;
   flex:1;
 }
+
+
+.item-list-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}

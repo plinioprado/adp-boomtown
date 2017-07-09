@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './styles.css';
 
-class NotFound extends Component {
+const NotFound = () => (
+  <div className="notfound">
+    <span>Not Found</span>
+  </div>
+);
 
-    render() {
-        return (
-            <div className="notfound">
-                <span>Not Found</span>
-            </div>
-        );
-    }
-}
 
 export default NotFound;
+

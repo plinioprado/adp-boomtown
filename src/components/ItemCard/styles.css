@@ -1,5 +1,6 @@
 /* item -card */
 
+
 .item-card {
   background-color: #fff;
   margin: 8px;
@@ -21,7 +22,7 @@
   }
 }
 
-.item-card>img {
+.item-card-img {
   z-index: 1;
   width: 100%;
 }

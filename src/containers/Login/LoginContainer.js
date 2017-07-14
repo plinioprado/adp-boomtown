@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { login } from '../../redux/actions';
+// import PropTypes from 'prop-types';
 
 import Login from './Login';
 
 class LoginContainer extends Component {
 
-    static propTypes = {
-    };
+  login = () => {
+    console.log('You clicked the login button.');
+  }
 
-    login = () => {
-        console.log('You clicked the login button.');
-    }
+  myLogin = () => {
+    this.props.dispatch(login());
+  }
 
-    render() {
-        return (
-            <Login login={this.login} />
-        );
-    }
+  render() {
+    return (
+      <Login login={this.login} myLogin={this.myLogin} />
+    );
+  }
 }
 
-export default LoginContainer;
+LoginContainer.propTypes = {
+
+};
+
+export default connect()(LoginContainer);

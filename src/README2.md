@@ -1,5 +1,4 @@
 # todo
 
-* Masonry not working
-* Not getting current route to show/hie elements
+* Not getting current route to show/hide elements
 * not getting logo from images folder

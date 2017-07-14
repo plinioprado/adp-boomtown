@@ -16,7 +16,7 @@ import './styles.css';
 const Routes = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={Login} />
+      <Route exact path="/" component={Items} />
       <Route path="/items" component={Items} />
       <Route path="/login" component={Login} />
       <Route path="/profile/:id" component={Profile} />

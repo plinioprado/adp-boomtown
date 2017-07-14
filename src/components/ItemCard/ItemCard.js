@@ -42,9 +42,11 @@ const ItemCard = ({ item }) => {
       <img src={item.imageUrl} alt={item.title} className="item-card-img" />
       { !item.available && <div className="item-status">{getStatus({ available: item.available, borrower: item.borrower })}</div> }
       <div className="item-block">
-        <Gravatar email={item.itemOwner.email} className="item-owner-image" />
-        <p className="item-owner-fullName">{item.itemOwner.fullName}</p>
-        <p className="item-createdOn">{getDays(item.createdOn)} days ago</p>
+        <a href={`/profile/${item.itemOwner.id}`}>
+          <Gravatar email={item.itemOwner.email} className="item-owner-image" />
+          <p className="item-owner-fullName">{item.itemOwner.fullName}</p>
+          <p className="item-createdOn">{getDays(item.createdOn)} days ago</p>
+        </a>
       </div>
       <div className="item-block">
         <p className="item-title">{item.title}</p>

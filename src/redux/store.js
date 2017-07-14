@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import thunk from 'redux-thunk';
@@ -12,3 +12,15 @@ export const store = createStore(
     )
   )
 );
+
+// TOTO: Implement combine Reducers, along
+// export default createStore(
+//     combineReducers({
+//       items: AppReducer
+//     }),
+//     composeWithDevTools(
+//         applyMiddleware(
+//             thunk
+//         )
+//     )
+// );

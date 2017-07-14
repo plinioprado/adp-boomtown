@@ -9,7 +9,9 @@ import './styles.css';
 const Head = () => (
   <Toolbar className="headerBar">
     <ToolbarGroup>
-      <img src={logo} alt="Boomtown" className="headerBar-logo" />
+      <a href="/">
+        <img src={logo} alt="Boomtown" className="headerBar-logo" />
+      </a>
       <DropDown className="drop-down" />
     </ToolbarGroup>
     <div className="headerBar-right">

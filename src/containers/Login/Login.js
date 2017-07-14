@@ -11,7 +11,7 @@ import logo from '../../images/boomtown-logo.svg';
 import bottomLeft from '../../images/home-bl.svg';
 import topRight from '../../images/home-tr.svg';
 
-const Login = ({ login, myLogin }) => (
+const Login = ({ login }) => (
 
   <div className="page login">
     <div className="logo">
@@ -33,13 +33,11 @@ const Login = ({ login, myLogin }) => (
             <div>
               <ValidatedTextField label="Password" />
             </div>
-            {/* originally type is submit and there is no onClick */}
             <RaisedButton
               className="enterButton"
               primary
               fullWidth
-              type="button"
-              onClick={() => myLogin()}
+              type="submit"
             >
               Enter
             </RaisedButton>
@@ -51,8 +49,7 @@ const Login = ({ login, myLogin }) => (
 );
 
 Login.propTypes = {
-  login: PropTypes.func.isRequired,
-  myLogin: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired
 };
 
 export default Login;

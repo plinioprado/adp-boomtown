@@ -1,8 +1,6 @@
 import {
-  LOGIN,
-  LOGOUT,
-  RENDER_ITEMS
-} from './actions';
+  LOAD_ITEMS
+} from './items';
 
 const initialState = {
   logged: true,
@@ -12,12 +10,8 @@ const initialState = {
 
 export function AppReducer(state = initialState, action) {
   switch (action.type) {
-    case RENDER_ITEMS:
+    case LOAD_ITEMS:
       return { ...state, loading: action.payload.loading, itemsData: action.payload.itemsData };
-    case LOGIN:
-      return { ...state, logged: true };
-    case LOGOUT:
-      return initialState;
     default:
       return state;
   }

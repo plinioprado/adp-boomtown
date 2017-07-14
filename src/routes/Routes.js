@@ -19,7 +19,7 @@ const Routes = () => (
       <Route exact path="/" component={Items} />
       <Route path="/items" component={Items} />
       <Route path="/login" component={Login} />
-      <Route path="/profile/:id" component={Profile} />
+      <Route path="/profile/:id" component={Profile} /> {/* TODO: Create page */}
       <Route path="/share" component={Share} />
       <Route component={NotFound} />
     </Switch>

@@ -1,13 +1,7 @@
-
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';
-export const RENDER_ITEMS = 'RENDER_ITEMS';
-
-export const login = () => ({ type: LOGIN });
-export const logout = () => ({ type: LOGOUT });
+export const LOAD_ITEMS = 'LOAD_ITEMS';
 
 export const renderItems = (items) => ({
-  type: RENDER_ITEMS,
+  type: LOAD_ITEMS,
   payload: {
     itemsData: items,
     loading: false
@@ -15,9 +9,13 @@ export const renderItems = (items) => ({
 });
 
 export function getItems() {
-  return function (dispatch) {
+  return function gi(dispatch) {
     Promise.all(['http://localhost:3001/items', 'http://localhost:3001/users'].map(url => (
-      fetch(url).then(response => response.json())
+      fetch(url)
+        .then(response => {
+          if (response.status !== 200) throw new Error('Error accessing data');
+          return response.json();
+        })
     ))).then(json => {
       const [items, users] = json;
       const itemsWithOwners = items.map(item => {
@@ -26,7 +24,8 @@ export function getItems() {
         return item;
       });
       dispatch(renderItems(itemsWithOwners));
-    });
+    })
+    .catch(() => null);
   };
 }
 

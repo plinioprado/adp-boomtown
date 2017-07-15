@@ -6,7 +6,7 @@ import './styles.css';
 
 const ProfileCard = ({ user }) => (
   <Card className="profile-card">
-    <CardText className="testClass">
+    <CardText className="profile">
       <div className="profile-left">
         <h2>{user.fullName}</h2>
         <p>{user.bio}</p>
@@ -18,6 +18,10 @@ const ProfileCard = ({ user }) => (
         </ul>
       </div>
       <div className="profile-right">
+        <div>
+          <p><span>0</span> items shared</p>
+          <p><span>0</span> items borrowed</p>
+        </div>
         <Gravatar email={user.email} />
       </div>
     </CardText>

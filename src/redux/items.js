@@ -1,10 +1,12 @@
+
 export const LOAD_ITEMS = 'LOAD_ITEMS';
 
 export const renderItems = (items) => ({
   type: LOAD_ITEMS,
   payload: {
     itemsData: items,
-    loading: false
+    loading: false,
+    dropShow: true
   }
 });
 

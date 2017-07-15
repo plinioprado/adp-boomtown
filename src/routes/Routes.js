@@ -7,7 +7,7 @@ import {
 
 import Login from '../containers/Login';
 import Items from '../containers/Items';
-import Profile from '../containers/Profile';
+import ProfilesContainer from '../containers/Profiles';
 import NotFound from '../components/NotFound';
 import Share from '../containers/Share';
 
@@ -19,7 +19,7 @@ const Routes = () => (
       <Route exact path="/" component={Items} />
       <Route path="/items" component={Items} />
       <Route path="/login" component={Login} />
-      <Route path="/profile/:id" component={Profile} /> {/* TODO: Create page */}
+      <Route path="/profile/:id" component={ProfilesContainer} /> {/* TODO: Create page */}
       <Route path="/share" component={Share} />
       <Route component={NotFound} />
     </Switch>

@@ -4,7 +4,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './styles.css';
 
 const ItemCard = ({ item }) => {
-  // console.log(item);
 
   const getTags = (list) => {
     let tags = '';

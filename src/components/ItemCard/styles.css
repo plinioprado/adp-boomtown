@@ -44,6 +44,10 @@
   padding: 16px;
 }
 
+.item-block a {
+  text-decoration: none;
+}
+
 .item-owner-image {
   width: 50px;
   border-radius: 50%;

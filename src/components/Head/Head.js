@@ -15,7 +15,7 @@ const Head = () => (
       <DropDown className="drop-down" />
     </ToolbarGroup>
     <div className="headerBar-right">
-      <a href="/profile/0">
+      <a href="/profile/TyHcYnSocuOg6PmWQivgxerTLcq2">
         <RaisedButton label="MY PROFILE" primary />
       </a>
       <RaisedButton label="LOGOUT" secondary className="btn-logout" />

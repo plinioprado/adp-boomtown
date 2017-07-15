@@ -1,0 +1,29 @@
+.profile-card {
+  width: 80%;
+  padding: 40px;
+  background: #fff;
+  margin-top: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 32px;
+}
+
+.profile-card h2 {
+  font-size: 2.5rem;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.profile-left {
+  max-width: 50%;
+  text-align: center;
+}
+
+.profile-right {
+  max-width: 50%;
+}
+
+.testClass {
+  display: flex;
+  flex-wrap: wrap;
+}

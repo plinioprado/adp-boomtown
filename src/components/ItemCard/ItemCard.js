@@ -1,10 +1,11 @@
 import React from 'react';
 import Gravatar from 'react-gravatar';
 import RaisedButton from 'material-ui/RaisedButton';
+
 import './styles.css';
 
 const ItemCard = ({ item }) => {
-
+  // Obs: There are several function here, not tdent fo Container because are presentational
   const getTags = (list) => {
     let tags = '';
 
@@ -24,7 +25,7 @@ const ItemCard = ({ item }) => {
     let status = '';
     if (!available) {
       if (borrower) {
-        status = `lent to ${borrower.substring(0, 10)}`;
+        status = `lent to ${item.borrowerName}`;
       } else {
         status = 'unavailable';
       }

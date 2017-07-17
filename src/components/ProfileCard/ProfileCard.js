@@ -18,8 +18,8 @@ const ProfileCard = ({ user }) => (
       </div>
       <div className="profile-right">
         <div>
-          <p><span>{user.sharingList.length}</span> items shared</p>
-          <p><span>{user.borrowingList.length}</span> items borrowed</p>
+          <p><span>{user.borrowedCount + user.borrowingList.length}</span> items shared</p>
+          <p><span>{user.borrowedCount}</span> items borrowed</p>
         </div>
         <Gravatar email={user.email} />
       </div>

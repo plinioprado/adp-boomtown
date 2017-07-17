@@ -37,7 +37,6 @@ class ProfilesContainer extends Component {
 }
 
 ProfilesContainer.propTypes = {
-  id: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   profile: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired

@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
 
-import { store } from './redux/store';
+import store from './store/store';
 import registerServiceWorker from './registerServiceWorker';
 import muiTheme from './config/theme';
 import Layout from './components/Layout';

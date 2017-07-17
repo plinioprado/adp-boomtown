@@ -1,5 +1,14 @@
+/*
+ * action types
+ */
 
 export const LOAD_ITEMS = 'LOAD_ITEMS';
+export const LOAD_FILTER_ITEMS = 'LOAD_FILTER_ITEMS';
+export const SELECT_FILTER_ITEMS = 'LOAD_FILTER_ITEMS';
+
+/*
+ * action creators
+ */
 
 export const renderItems = (items) => ({
   type: LOAD_ITEMS,
@@ -9,6 +18,10 @@ export const renderItems = (items) => ({
     dropShow: true
   }
 });
+
+// export const selectFilterItems = (values) => {
+//   console.log(values);
+// };
 
 export function getItems() {
   return function gi(dispatch) {
@@ -31,3 +44,21 @@ export function getItems() {
   };
 }
 
+export const loadFilterItems = () => {
+
+  const filterList = [
+    'Eletronics',
+    'Household items',
+    'Musical Instruments',
+    'Phisical Media',
+    'Recreational Equipment',
+    'Sporting goods',
+    'Tools'];
+
+  return ({
+    type: LOAD_FILTER_ITEMS,
+    payload: {
+      filterList: filterList
+    }
+  });
+};

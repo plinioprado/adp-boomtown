@@ -9,19 +9,22 @@ import Head from '../Head';
 
 import './styles.css';
 
-const Layout = ({ children, logged }) => (
+const Layout = ({ children }) => (
   <div className="appContentWrapper">
     <div className="appHeader">
-      { logged ? <Head /> : null }
+      <Head />
     </div>
     <div className="appContent">
       {children}
     </div>
-    <FloatingActionButton backgroundColor="#000" className="item-list-button">
-      <ContentAdd />
-    </FloatingActionButton>
+    {
+      false && (
+      <FloatingActionButton backgroundColor="#000" className="item-list-button">
+        <ContentAdd />
+      </FloatingActionButton>)
+    }
     <footer className="appFooter">
-      { logged ? <Foot /> : null }
+      <Foot />
     </footer>
   </div>
   );
@@ -32,8 +35,7 @@ Layout.defaultProps = {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node,
-  logged: PropTypes.bool.isRequired
+  children: PropTypes.node
 };
 
 function mapStateToProps(store) {

@@ -4,6 +4,17 @@
 
 .headerBar-logo {
   height: 36px;
+  display: block;
+}
+
+.headerBar-select {
+  margin-left: 20px;
+  display: block;
+}
+
+.headerBar-logo {
+  height: 36px;
+  display: block;
 }
 
 .headerBar-right {

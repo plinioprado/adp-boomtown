@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Masonry from 'react-masonry-component';
 
-import { getItems } from '../../redux/items';
+import { getItems } from '../../actions/items';
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
 import './styles.css';
@@ -38,8 +38,8 @@ ItemsContainer.propTypes = {
 
 function mapStateToProps(store) {
   return {
-    loading: store.loading,
-    itemsData: store.itemsData
+    loading: store.items.loading,
+    itemsData: store.items.itemsData
   };
 }
 

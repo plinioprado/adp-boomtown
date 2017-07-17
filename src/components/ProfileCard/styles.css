@@ -1,10 +1,9 @@
 .profile-card {
-  width: 80%;
+  max-width: 800px;
   margin-top: 32px;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 32px;
-
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .profile {
@@ -15,27 +14,34 @@
 }
 
 .profile h2 {
+  text-align: left !important;
   font-size: 2.5rem;
   line-height: 1.25;
   margin-bottom: 1rem;
   text-align: center;
 }
 
+.profile h3 {
+  margin-top: 16px;
+}
+
 .profile p {
   color: rgba(38,50,56,.54);
 }
+
 
 .profile li {
   color: rgba(38,50,56,.54);
 }
 
 .profile>div {
-    width: 100%;
+  
+  width: 100%;
 }
 
 .profile-right {
+  margin-top: 16px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
@@ -53,6 +59,11 @@
 }
 
 @media (min-width: 768px) {
+
+  .profile-card {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .profile>div {
     width: 50%;

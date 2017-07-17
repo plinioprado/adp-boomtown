@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Masonry from 'react-masonry-component';
 
-import { getItems } from '../../redux/items';
-
+import { getProfile } from '../../actions/profiles';
 import ProfileCard from '../../components/ProfileCard';
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
@@ -13,36 +12,41 @@ import './styles.css';
 class ProfilesContainer extends Component {
 
   componentDidMount() {
-    this.props.dispatch(getItems());
+    this.props.dispatch(getProfile(this.props.match.params.id));
   }
 
   render() {
     let childElements = null;
-    if (this.props.loading) {
-      return <Loader />;
-    } else {
-      childElements = this.props.itemsData.map(item => <ItemCard item={item} key={item.id} />);
 
-      return (
+    let element;
+    if (this.props.loading) {
+      element = <Loader />;
+    } else {
+      childElements = this.props.profile.items.map(item => <ItemCard item={item} key={item.id} />);
+
+      element = (
         <div className="profiles-container">
-          <ProfileCard user={this.props.itemsData[0].itemOwner} />
+          <ProfileCard user={this.props.profile.user} />
           <Masonry>{childElements}</Masonry>
         </div>
       );
+
     }
+    return element;
   }
 }
 
 ProfilesContainer.propTypes = {
+  id: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
-  itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  profile: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(store) {
   return {
-    loading: store.loading,
-    itemsData: store.itemsData
+    loading: store.profiles.loading,
+    profile: store.profiles.profile
   };
 }
 

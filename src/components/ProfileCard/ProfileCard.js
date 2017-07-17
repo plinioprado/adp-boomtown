@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardText } from 'material-ui/Card';
+// import PropTypes from 'prop-types';
 import Gravatar from 'react-gravatar';
 
 import './styles.css';
@@ -12,15 +13,13 @@ const ProfileCard = ({ user }) => (
         <p>{user.bio}</p>
         <h3>Currently borrowing:</h3>
         <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
+          {user.borrowingList.map((item, k) => <li key={k}>{item}</li>)}
         </ul>
       </div>
       <div className="profile-right">
         <div>
-          <p><span>0</span> items shared</p>
-          <p><span>0</span> items borrowed</p>
+          <p><span>{user.sharingList.length}</span> items shared</p>
+          <p><span>{user.borrowingList.length}</span> items borrowed</p>
         </div>
         <Gravatar email={user.email} />
       </div>

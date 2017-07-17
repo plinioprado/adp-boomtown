@@ -19,7 +19,7 @@ class ItemsContainer extends Component {
     if (this.props.loading) {
       return <Loader />;
     } else {
-      childElements = this.props.itemsData.map(item => <ItemCard item={item} key={item.id} />);
+      childElements = this.props.itemsDataFiltered.map(item => <ItemCard item={item} key={item.id} />);
 
       return (
         <div className="items-container">
@@ -32,14 +32,14 @@ class ItemsContainer extends Component {
 
 ItemsContainer.propTypes = {
   loading: PropTypes.bool.isRequired,
-  itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  itemsDataFiltered: PropTypes.arrayOf(PropTypes.object).isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(store) {
   return {
     loading: store.items.loading,
-    itemsData: store.items.itemsData
+    itemsDataFiltered: store.items.itemsDataFiltered
   };
 }
 

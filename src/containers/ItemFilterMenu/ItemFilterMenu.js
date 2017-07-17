@@ -5,31 +5,24 @@ import MenuItem from 'material-ui/MenuItem';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { loadFilterItems } from '../../actions/items';
+import { loadFilterItems, selectFilterItems } from '../../actions/items';
 
 let names = [];
 
 class SelectFieldExampleMultiSelect extends Component {
 
-  state = {
-    values: [],
-  };
-
   componentDidMount() {
     this.props.dispatch(loadFilterItems());
   }
 
-  handleChange = (event, index, values) => this.setState({ values });
+  handleChange = (event, index, filterValues) => this.props.dispatch(selectFilterItems(this.props.itemsData, filterValues));
 
-  // handleChange = (event, index, values) => this.props.dispatch(selectFilterItems(values));
-
-
-  menuItems(values) {
+  menuItems(filterValues) {
     return names.map((name) => (
       <MenuItem
         key={name}
         insetChildren
-        checked={values && values.indexOf(name) > -1}
+        checked={filterValues && filterValues.indexOf(name) > -1}
         value={name}
         primaryText={name}
       />
@@ -39,13 +32,13 @@ class SelectFieldExampleMultiSelect extends Component {
   render() {
 
     names = this.props.filterList;
-    const { values } = this.state;
+    const filterValues = this.props.filterValues;
 
     const childElements = names.map((name) => (
       <MenuItem
         key={name}
         insetChildren
-        checked={values && values.indexOf(name) > -1}
+        checked={filterValues && filterValues.indexOf(name) > -1}
         value={name}
         primaryText={name}
       />
@@ -55,7 +48,7 @@ class SelectFieldExampleMultiSelect extends Component {
       <SelectField
         multiple
         hintText="Select a name"
-        value={values}
+        value={filterValues}
         onChange={this.handleChange}
       >
         {childElements}
@@ -65,13 +58,17 @@ class SelectFieldExampleMultiSelect extends Component {
 }
 
 SelectFieldExampleMultiSelect.propTypes = {
-  filterList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterValues: PropTypes.arrayOf(PropTypes.string).isRequired,
+  itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(store) {
   return {
-    filterList: store.items.filterList
+    filterList: store.items.filterList,
+    filterValues: store.items.filterValues,
+    itemsData: store.items.itemsData
   };
 }
 

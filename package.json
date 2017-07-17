@@ -2,6 +2,10 @@
   "name": "boomtown-starter",
   "version": "0.1.0",
   "private": true,
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/plinioprado/boomtown"
+  }
   "dependencies": {
     "concurrently": "^3.5.0",
     "json-server": "^0.10.1",

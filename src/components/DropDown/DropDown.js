@@ -3,9 +3,9 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
 const styles = {
-    customWidth: {
-        width: 200,
-    },
+  customWidth: {
+    width: 200,
+  },
 };
 
 export default class DropDown extends React.Component {

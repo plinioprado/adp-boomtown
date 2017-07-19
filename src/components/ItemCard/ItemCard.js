@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './styles.css';
 
 const ItemCard = ({ item }) => {
-  // Obs: There are several function here, not tdent fo Container because are presentational
+  // Obs: There are several function here, not sent fo Container because are presentational
   const getTags = (list) => {
     let tags = '';
 

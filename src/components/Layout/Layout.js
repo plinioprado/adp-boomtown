@@ -9,10 +9,10 @@ import Head from '../Head';
 
 import './styles.css';
 
-const Layout = ({ children }) => (
+const Layout = ({ children, pathname }) => (
   <div className="appContentWrapper">
     <div className="appHeader">
-      <Head />
+      { (pathname !== '/login') && <Head /> }
     </div>
     <div className="appContent">
       {children}
@@ -31,16 +31,16 @@ const Layout = ({ children }) => (
 
 Layout.defaultProps = {
   children: null,
-  logged: PropTypes.bool.isRequired
 };
 
 Layout.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node.isRequired,
+  pathname: PropTypes.string.isRequired
 };
 
 function mapStateToProps(store) {
   return {
-    logged: store.logged
+    pathname: store.router.location.pathname
   };
 }
 

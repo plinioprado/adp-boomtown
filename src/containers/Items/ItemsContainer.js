@@ -3,44 +3,73 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Masonry from 'react-masonry-component';
 
-import { getItems } from '../../actions/items';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+// import { getItems } from '../../actions/items';
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
 import './styles.css';
 
 class ItemsContainer extends Component {
 
-  componentDidMount() {
-    this.props.dispatch(getItems());
-  }
-
   render() {
-    let childElements = null;
-    if (this.props.loading) {
-      return <Loader />;
+    let child;
+    if (this.props.data.loading) {
+      child = <Loader />;
     } else {
-      childElements = this.props.itemsDataFiltered.map(item => <ItemCard item={item} key={item.id} />);
-
-      return (
+      let items = this.props.data.items;
+      if (this.props.filterValues.length) {
+        items = this.props.data.items.filter(item => (item.tags.find(tag => this.props.filterValues.includes(tag))));
+      }
+      const childElements = items.map(item => <ItemCard item={item} key={item.id} />);
+      child = (
         <div className="items-container">
           <Masonry>{childElements}</Masonry>
         </div>
       );
     }
+
+    return child;
   }
 }
 
 ItemsContainer.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  itemsDataFiltered: PropTypes.arrayOf(PropTypes.object).isRequired,
-  dispatch: PropTypes.func.isRequired
+  filterValues: PropTypes.arrayOf(PropTypes.string).isRequired,
+  data: PropTypes.objectOf({
+    data: PropTypes.array,
+    loaded: PropTypes.bool
+  }).isRequired
 };
 
 function mapStateToProps(store) {
   return {
-    loading: store.items.loading,
-    itemsDataFiltered: store.items.itemsDataFiltered
+    filterValues: store.items.filterValues
   };
 }
 
-export default connect(mapStateToProps)(ItemsContainer);
+const fetchItems = gql`
+   query fetchItems {
+    items {
+      available
+      borrower {
+        fullName
+      }
+      createdOn
+      description
+      id
+      imageUrl
+      itemOwner {
+        id
+        fullName
+        email
+      }
+      tags
+      title
+    } 
+  }
+`;
+
+
+const ItemsContainerWithData = graphql(fetchItems)(ItemsContainer);
+export default connect(mapStateToProps)(ItemsContainerWithData);

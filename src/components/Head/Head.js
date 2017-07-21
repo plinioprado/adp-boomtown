@@ -1,11 +1,12 @@
-import React from 'react';
 import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import ItemFilterMenu from '../../containers/ItemFilterMenu';
 import logo from '../../images/boomtown-logo.svg';
+
 import './styles.css';
 
 const Head = ({ pathname }) => (
@@ -13,8 +14,8 @@ const Head = ({ pathname }) => (
     <ToolbarGroup>
       <a href="/">
         <img src={logo} alt="Boomtown" className="headerBar-logo" />
-      </a>     
-      { (pathname === '/' || pathname === '/items') &&  
+      </a>
+      { (pathname === '/' || pathname === '/items') &&
         <div className="headerBar-select">
           <ItemFilterMenu className="headerBar-select" />
         </div>
@@ -32,7 +33,6 @@ const Head = ({ pathname }) => (
 Head.propTypes = {
   pathname: PropTypes.string.isRequired
 };
-
 
 function mapStateToProps(store) {
   return {

@@ -48,7 +48,7 @@ export function getProfile(id) {
           return item;
         })
         .map(item => {
-          let it = item;
+          const it = item;
           it.borrowerName = (it.borrower === null) ? '' : users.filter(u => u.id === it.borrower)[0].fullName;
           if (it.borrower === id) borrowingList.push(it.title + ' from ' + it.itemOwner.fullName);
           if (it.itemOwner.id === id && it.borrower !== null) borrowedCount += 1;

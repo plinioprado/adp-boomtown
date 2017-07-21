@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter } from 'react-router-redux';
+
+import { ApolloProvider } from 'react-apollo';
+import client from './config/apolloClient';
 
 
 import store from './store/store';
@@ -21,13 +23,13 @@ injectTapEventPlugin();
 
 const Boomtown = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
-    <Provider store={store}>
+    <ApolloProvider client={client} store={store}>
       <ConnectedRouter history={history}>
         <Layout>
           <Routes />
         </Layout>
       </ConnectedRouter>
-    </Provider>
+    </ApolloProvider>
   </MuiThemeProvider>
 );
 

@@ -5,17 +5,13 @@ import MenuItem from 'material-ui/MenuItem';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { loadFilterItems, selectFilterItems } from '../../actions/items';
+import { selectFilterItems } from '../../actions/items';
 
 let names = [];
 
 class SelectFieldExampleMultiSelect extends Component {
 
-  componentDidMount() {
-    this.props.dispatch(loadFilterItems());
-  }
-
-  handleChange = (event, index, filterValues) => this.props.dispatch(selectFilterItems(this.props.itemsData, filterValues));
+  handleChange = (event, index, filterValues) => this.props.dispatch(selectFilterItems(filterValues));
 
   menuItems(filterValues) {
     return names.map((name) => (
@@ -30,7 +26,6 @@ class SelectFieldExampleMultiSelect extends Component {
   }
 
   render() {
-
     names = this.props.filterList;
     const filterValues = this.props.filterValues;
 
@@ -60,15 +55,13 @@ class SelectFieldExampleMultiSelect extends Component {
 SelectFieldExampleMultiSelect.propTypes = {
   filterList: PropTypes.arrayOf(PropTypes.string).isRequired,
   filterValues: PropTypes.arrayOf(PropTypes.string).isRequired,
-  itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(store) {
   return {
     filterList: store.items.filterList,
-    filterValues: store.items.filterValues,
-    itemsData: store.items.itemsData
+    filterValues: store.items.filterValues
   };
 }
 

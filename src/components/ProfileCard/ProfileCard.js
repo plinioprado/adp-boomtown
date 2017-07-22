@@ -5,7 +5,10 @@ import Gravatar from 'react-gravatar';
 
 import './styles.css';
 
-const ProfileCard = ({ user }) => (
+const ProfileCard = ({ user }) => {
+  console.log('user');
+  console.log(user);
+  return (
   <Card className="profile-card">
     <CardText className="profile">
       <div className="profile-left">
@@ -13,18 +16,18 @@ const ProfileCard = ({ user }) => (
         <p>{user.bio}</p>
         <h3>Currently borrowing:</h3>
         <ul>
-          {user.borrowingList.map((item, k) => <li key={k}>{item}</li>)}
+          {/*user.borrowed.map((title, k) => <li key={k}>{title}</li>)*/}
         </ul>
       </div>
       <div className="profile-right">
         <div>
-          <p><span>{user.borrowedCount + user.borrowingList.length}</span> items shared</p>
-          <p><span>{user.borrowedCount}</span> items borrowed</p>
+          <p><span>{/*user.borrowedCount + user.borrowingList.length*/}</span> items shared</p>
+          <p><span>{/*user.borrowedCount*/}</span> items borrowed</p>
         </div>
         <Gravatar email={user.email} />
       </div>
     </CardText>
   </Card>
-);
+)};
 
 export default ProfileCard;

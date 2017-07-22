@@ -6,13 +6,11 @@ import Masonry from 'react-masonry-component';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-// import { getItems } from '../../actions/items';
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
 import './styles.css';
 
 class ItemsContainer extends Component {
-
   render() {
     let child;
     if (this.props.data.loading) {
@@ -69,7 +67,6 @@ const fetchItems = gql`
     } 
   }
 `;
-
 
 const ItemsContainerWithData = graphql(fetchItems)(ItemsContainer);
 export default connect(mapStateToProps)(ItemsContainerWithData);

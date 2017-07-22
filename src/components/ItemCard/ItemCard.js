@@ -25,7 +25,7 @@ const ItemCard = ({ item }) => {
     let status = '';
     if (!available) {
       if (borrower) {
-        status = `lent to ${item.borrowerName}`;
+        status = `lent to ${item.borrower.fullName}`;
       } else {
         status = 'unavailable';
       }

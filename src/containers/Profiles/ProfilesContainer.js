@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Masonry from 'react-masonry-component';
 
-import { getProfile } from '../../actions/profiles';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+// import { getProfile } from '../../actions/profiles';
 import ProfileCard from '../../components/ProfileCard';
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
@@ -11,42 +13,64 @@ import './styles.css';
 
 class ProfilesContainer extends Component {
 
-  componentDidMount() {
-    this.props.dispatch(getProfile(this.props.match.params.id));
-  }
-
   render() {
-    let childElements = null;
+    let child;
 
-    let element;
-    if (this.props.loading) {
-      element = <Loader />;
+    if (this.props.data.loading) {
+      child = <Loader />;
     } else {
-      childElements = this.props.profile.items.map(item => <ItemCard item={item} key={item.id} />);
+      const user = this.props.data.user;
 
-      element = (
+      const childElements = user.items.map(item => <ItemCard item={item} key={item.id} />);
+      child = (
         <div className="profiles-container">
-          <ProfileCard user={this.props.profile.user} />
+          <ProfileCard user={user} />
           <Masonry>{childElements}</Masonry>
         </div>
       );
-
     }
-    return element;
+
+    return child;
   }
 }
 
 ProfilesContainer.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  profile: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
+  data: PropTypes.objectOf({
+    loading: PropTypes.bool.isRequired,
+    user: PropTypes.any
+  }).isRequired
 };
 
-function mapStateToProps(store) {
-  return {
-    loading: store.profiles.loading,
-    profile: store.profiles.profile
-  };
-}
+const fetchUsers = gql`
+query fetchUser {
+    user (id: "TyHcYnSocuOg6PmWQivgxerTLcq2" ) {
+  	  id
+      email
+      fullName
+      bio
+      borrowed {
+        title
+      }
+      items {
+        available
+        createdOn
+        description
+        id
+        imageUrl
+        itemOwner {
+          fullName
+          email
+        }
+        tags
+        title
+        borrower {
+          id
+          fullName
+        }
+      }
+    }
+  }
+`;
 
-export default connect(mapStateToProps)(ProfilesContainer);
+const ProfilesContainerWithData = graphql(fetchUsers)(ProfilesContainer);
+export default ProfilesContainerWithData;

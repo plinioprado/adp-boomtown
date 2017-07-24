@@ -5,7 +5,6 @@
   background-color: #fff;
   margin: 8px;
   width: 100%;
-  display: inline-block;
   font-size: 14px;
   padding: 0;
 }
@@ -13,6 +12,7 @@
 @media(min-width: 576px) {
   .item-card {
     width: calc(50% - 16px);
+
   }
 }
 

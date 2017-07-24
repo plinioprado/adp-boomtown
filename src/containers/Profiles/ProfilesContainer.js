@@ -5,7 +5,6 @@ import Masonry from 'react-masonry-component';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-// import { getProfile } from '../../actions/profiles';
 import ProfileCard from '../../components/ProfileCard';
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
@@ -42,7 +41,7 @@ ProfilesContainer.propTypes = {
 };
 
 const fetchUsers = gql`
-query fetchUser {
+  query fetchUser {
     user (id: "TyHcYnSocuOg6PmWQivgxerTLcq2" ) {
   	  id
       email

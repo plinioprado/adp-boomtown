@@ -1,7 +1,9 @@
 .appContentWrapper {
-    display: flex;
-    min-height: 100%;
-    flex-direction:column;
+  width: 100%;
+  display: flex;
+  min-height: 100%;
+  flex-direction:column;
+  margin: 0;
 }
 
 .appContent {
@@ -11,7 +13,6 @@
   width: 100%;
   flex:1;
 }
-
 
 .item-list-button {
   position: fixed;

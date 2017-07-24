@@ -1,4 +1,5 @@
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
+// import { Toolbar } from 'material-ui/Toolbar';
+import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -9,26 +10,37 @@ import logo from '../../images/boomtown-logo.svg';
 
 import './styles.css';
 
-const Head = ({ pathname }) => (
-  <Toolbar className="headerBar">
-    <ToolbarGroup>
+const Head = ({ pathname }) => {
+  const leftElements = (
+    <div className="headerbar-left">
       <a href="/">
-        <img src={logo} alt="Boomtown" className="headerBar-logo" />
+        <img src={logo} alt="Boomtown" className="headerbar-logo" />
       </a>
-      { (pathname === '/' || pathname === '/items') &&
-        <div className="headerBar-select">
+      {(pathname === '/' || pathname === '/items') &&
+        <div className="headerbar-select">
           <ItemFilterMenu className="headerBar-select" />
         </div>
       }
-    </ToolbarGroup>
-    <div className="headerBar-right">
+    </div>
+  );
+
+  const rightElements = (
+    <div className="headerbar-right">
       <a href="/profile/TyHcYnSocuOg6PmWQivgxerTLcq2">
         <RaisedButton label="MY PROFILE" primary />
       </a>
       <RaisedButton label="LOGOUT" secondary className="btn-logout" />
     </div>
-  </Toolbar>
-);
+  );
+
+  return (
+    <AppBar
+      className="headerbar"
+      iconElementLeft={leftElements}
+      iconElementRight={rightElements}
+    />
+  )
+};
 
 Head.propTypes = {
   pathname: PropTypes.string.isRequired

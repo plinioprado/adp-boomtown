@@ -4,8 +4,10 @@ import client from '../config/apolloClient';
 
 import ItemsReducer from './items';
 import ProfilesReducer from './profiles';
+import AuthReducer from './auth';
 
 export const reducer = combineReducers({
+  auth: AuthReducer,
   items: ItemsReducer,
   profiles: ProfilesReducer,
   router: routerReducer,

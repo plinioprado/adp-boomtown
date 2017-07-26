@@ -3,14 +3,22 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import store from '../../store/store';
-import { updateAuthState, showLoginError } from '../../actions/auth';
+import { showLoginError } from '../../actions/auth';
 import Login from './Login';
 import firebase from '../../config/firebase';
 
+
 class LoginContainer extends Component {
 
-  login = ({ email, password }) => {
+  email = '';
+  password = '';
+
+  login = (e) => {
+    console.log('submitted');
+    console.log(e);
+    const email = 'john@mytest.com';
+    const password = '1q2w3e';
+    // TODO move this to a thumk, create form tos User with email, fullname, bio (can be in modal), make login work from form
     firebase.FirebaseAuth.signInWithEmailAndPassword(email, password)
       .catch((error) => {
         if (error.code === 'auth/user-not-found') {
@@ -22,13 +30,8 @@ class LoginContainer extends Component {
   }
 
   render() {
-    this.login({
-      email: 'john@mytest.com',
-      password: '1q2w3e'
-    });
-
     const { from } = this.props.location.state || { from: '/' };
-    const { authenticated, loginFormValues, ...props } = this.props;
+    // const { authenticated, loginFormValues, ...props } = this.props;
 
     if (this.props.profile) {
       return (
@@ -37,32 +40,15 @@ class LoginContainer extends Component {
     }
 
     return (
-      <Login login={this.login} />
+      <Login
+        submit={(e) => {
+          e.preventDefault();
+          this.login(e);
+        }}
+      />
     );
   }
 }
-
-firebase.FirebaseAuth.onAuthStateChanged((user) => {
-  if (user) {
-    store.dispatch(updateAuthState(user));
-  } else {
-    store.dispatch(updateAuthState(false));
-  }
-
-    // User is signed in.
-    // var displayName = user.displayName;
-    // var email = user.email;
-    // var emailVerified = user.emailVerified;
-    // var photoURL = user.photoURL;
-    // var isAnonymous = user.isAnonymous;
-    // var uid = user.uid;
-    // var providerData = user.providerData;
-    // ...
-  // } else {
-  //   // User is signed out.
-  //   // ...
-  // }
-});
 
 function mapStateToProps(store) {
   return {
@@ -71,6 +57,9 @@ function mapStateToProps(store) {
 }
 
 LoginContainer.propTypes = {
+  location: PropTypes.any.isRequired,
+  // profile: PropTypes.any.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(LoginContainer);

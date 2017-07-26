@@ -7,6 +7,7 @@ import {
 import Login from '../containers/Login';
 import Items from '../containers/Items';
 import ProfilesContainerWithData from '../containers/Profiles';
+import UserContainerWithData from '../containers/UserContainer';
 import NotFound from '../components/NotFound';
 import Share from '../containers/Share';
 
@@ -15,6 +16,7 @@ import './styles.css';
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Items} />
+    <Route path="/user" component={UserContainerWithData} />
     <Route path="/items" component={Items} />
     <Route path="/login" component={Login} />
     <Route path="/profile/:id" component={ProfilesContainerWithData} />

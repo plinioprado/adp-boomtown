@@ -51,6 +51,7 @@ const fetchItems = gql`
     items {
       available
       borrower {
+        id
         fullName
       }
       createdOn

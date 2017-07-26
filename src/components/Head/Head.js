@@ -1,10 +1,10 @@
-// import { Toolbar } from 'material-ui/Toolbar';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { updateAuthState } from '../../actions/auth';
 import ItemFilterMenu from '../../containers/ItemFilterMenu';
 import logo from '../../images/boomtown-logo.svg';
 
@@ -29,7 +29,11 @@ const Head = ({ pathname }) => {
       <a href="/profile/TyHcYnSocuOg6PmWQivgxerTLcq2">
         <RaisedButton label="MY PROFILE" primary />
       </a>
-      <RaisedButton label="LOGOUT" secondary className="btn-logout" />
+      <RaisedButton
+        label="LOGOUT"
+        secondary
+        className="btn-logout"
+      />
     </div>
   );
 
@@ -53,4 +57,3 @@ function mapStateToProps(store) {
 }
 
 export default connect(mapStateToProps)(Head);
-

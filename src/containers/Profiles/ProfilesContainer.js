@@ -36,16 +36,17 @@ class ProfilesContainer extends Component {
 ProfilesContainer.propTypes = {
   data: PropTypes.objectOf({
     loading: PropTypes.bool.isRequired,
-    user: PropTypes.any
+    user: PropTypes.any,
+    id: PropTypes.string.isRequired
   }).isRequired
 };
 
 const fetchUsers = gql`
   query fetchUser {
-    user (id: "TyHcYnSocuOg6PmWQivgxerTLcq2" ) {
-  	  id
+    user (id: "bt26ImStpfTd0TGWFK91f9lIaZy1" ) {
+      id
       email
-      fullName
+      fullname
       bio
       borrowed {
         title
@@ -57,14 +58,14 @@ const fetchUsers = gql`
         id
         imageUrl
         itemOwner {
-          fullName
+          fullname
           email
         }
         tags
         title
         borrower {
           id
-          fullName
+          fullname
         }
       }
     }

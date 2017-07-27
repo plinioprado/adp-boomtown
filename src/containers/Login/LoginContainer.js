@@ -10,20 +10,40 @@ import firebase from '../../config/firebase';
 
 class LoginContainer extends Component {
 
-  email = '';
-  password = '';
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
 
-  login = (e) => {
-    console.log('submitted');
-    console.log(e);
-    const email = 'john@mytest.com';
+  //   this.props.mutate({
+  //     variables: {
+  //       email: 'xxx@xxx.com',
+  //       fullname: 'John Doe',
+  //       password: '1q2w3e'
+  //     }
+  //   })
+  //   .then(({ data }) => {
+  //     console.log('got data', data);
+  //   })
+  //   .catch((error) => {
+  //     console.log('error:', error);
+  //   });
+  // }
+
+  login = (event) => {
+    event.preventDefault();
+    const email = 'mackenzie@redacademy.com';
     const password = '1q2w3e';
     // TODO move this to a thumk, create form tos User with email, fullname, bio (can be in modal), make login work from form
     firebase.FirebaseAuth.signInWithEmailAndPassword(email, password)
+      .then(res => {
+        console.log('login/then');
+        console.log(res);
+      })
       .catch((error) => {
         if (error.code === 'auth/user-not-found') {
+          console.log('invalid');
           this.props.dispatch(showLoginError(error.code)); // SHOW_JOIN_MODAL in the future
         } else {
+          console.log('feiled');
           this.props.dispatch(showLoginError(error.code));
         }
       });
@@ -41,7 +61,7 @@ class LoginContainer extends Component {
 
     return (
       <Login
-        submit={(e) => {
+        login={(e) => {
           e.preventDefault();
           this.login(e);
         }}
@@ -56,10 +76,15 @@ function mapStateToProps(store) {
   };
 }
 
+// LoginContainer.defaultProps = {
+//   location: { from: '/' },
+//   mutate: null,
+// };
+
 LoginContainer.propTypes = {
-  location: PropTypes.any.isRequired,
-  // profile: PropTypes.any.isRequired,
-  dispatch: PropTypes.func.isRequired
+  location: PropTypes.object
+  // mutate: PropTypes.func
+  // dispatch: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(LoginContainer);

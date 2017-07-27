@@ -11,6 +11,7 @@ import Loader from '../../components/Loader';
 import './styles.css';
 
 class ItemsContainer extends Component {
+
   render() {
     let child;
     if (this.props.data.loading) {
@@ -52,7 +53,7 @@ const fetchItems = gql`
       available
       borrower {
         id
-        fullName
+        fullname
       }
       createdOn
       description
@@ -60,7 +61,7 @@ const fetchItems = gql`
       imageUrl
       itemOwner {
         id
-        fullName
+        fullname
         email
       }
       tags

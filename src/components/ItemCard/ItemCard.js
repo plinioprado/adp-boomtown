@@ -25,7 +25,7 @@ const ItemCard = ({ item }) => {
     let status = '';
     if (!available) {
       if (borrower) {
-        status = `lent to ${item.borrower.fullName}`;
+        status = `lent to ${item.borrower.fullname}`;
       } else {
         status = 'unavailable';
       }
@@ -44,7 +44,7 @@ const ItemCard = ({ item }) => {
       <div className="item-block">
         <a href={`/profile/${item.itemOwner.id}`}>
           <Gravatar email={item.itemOwner.email} className="item-owner-image" />
-          <p className="item-owner-fullName">{item.itemOwner.fullName}</p>
+          <p className="item-owner-fullname">{item.itemOwner.fullname}</p>
           <p className="item-createdOn">{getDays(item.createdOn)} days ago</p>
         </a>
       </div>

@@ -14,7 +14,7 @@
 //       bio: items[0].itemOwner.bio,
 //       borrowingList: items[0].itemOwner.borrowingList,
 //       email: items[0].itemOwner.email,
-//       fullName: items[0].itemOwner.fullName,
+//       fullname: items[0].itemOwner.fullname,
 //       borrowedCount: items[0].itemOwner.borrowedCount
 //     },
 //     items: items
@@ -49,8 +49,8 @@
 //         })
 //         .map(item => {
 //           const it = item;
-//           it.borrowerName = (it.borrower === null) ? '' : users.filter(u => u.id === it.borrower)[0].fullName;
-//           if (it.borrower === id) borrowingList.push(it.title + ' from ' + it.itemOwner.fullName);
+//           it.borrowerName = (it.borrower === null) ? '' : users.filter(u => u.id === it.borrower)[0].fullname;
+//           if (it.borrower === id) borrowingList.push(it.title + ' from ' + it.itemOwner.fullname);
 //           if (it.itemOwner.id === id && it.borrower !== null) borrowedCount += 1;
 //           return it;
 //         })

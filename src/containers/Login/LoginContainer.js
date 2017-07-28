@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect,  } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 
 import { showLoginError } from '../../actions/auth';
 import Login from './Login';
@@ -12,7 +13,7 @@ class LoginContainer extends Component {
 
   login = (event) => {
     event.preventDefault();
-    const email = 'mackenzie@redacademy.com';
+    const email = 'john@example.com';
     const password = '1q2w3e';
     // TODO move this to a thumk
     firebase.FirebaseAuth.signInWithEmailAndPassword(email, password)
@@ -20,6 +21,7 @@ class LoginContainer extends Component {
         console.log('logged', res);
       })
       .catch((error) => {
+        console.loc(error);
         if (error.code === 'auth/user-not-found') {
           this.props.dispatch(showLoginError(error.code)); // SHOW_JOIN_MODAL in the future
         } else {

@@ -16,7 +16,7 @@ const Head = ({ pathname }) => {
       <Link to="/">
         <img src={logo} alt="Boomtown" className="headerbar-logo" />
       </Link>
-      { pathname === '/' &&
+      { (pathname === '/') &&
         <div className="headerbar-select">
           <ItemFilterMenu className="headerBar-select" />
         </div>

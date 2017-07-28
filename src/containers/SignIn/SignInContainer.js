@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 import ValidatedTextField from '../../components/ValidatedTextField';
 import './styles.css';
 
-class UserContainer extends Component {
+class SignInContainer extends Component {
 
   divStyle = {
     width: '100%'
@@ -19,9 +19,9 @@ class UserContainer extends Component {
     event.preventDefault();
     this.props.mutate({
       variables: {
-        email: '11@test.com',
+        email: 'john@example.com',
         fullname: 'John Doe',
-        bio: 'jhhjk lhjl hjklh jlhj hjlkhjlhjlk jhklhjl',
+        bio: 'I do not exist',
         password: '1q2w3e'
       }
     })
@@ -71,7 +71,7 @@ class UserContainer extends Component {
   }
 }
 
-UserContainer.propTypes = {
+SignInContainer.propTypes = {
   mutate: PropTypes.func.isRequired
 };
 
@@ -96,5 +96,5 @@ const addUser = gql`
   }
 `;
 
-const UserContainerWithData = graphql(addUser)(UserContainer);
-export default UserContainerWithData;
+const SignInContainerWithData = graphql(addUser)(SignInContainer);
+export default SignInContainerWithData;

@@ -12,6 +12,14 @@ import './styles.css';
 
 class ItemsContainer extends Component {
 
+  // testTags = (tags) => {
+  //   let ok = false;
+  //   tags.forEach((tag) => {
+  //     if (this.props.filterValues.includes(tag.title)) ok = true;
+  //   });
+  //   return ok;
+  // }
+
   render() {
     let child;
     if (this.props.data.loading) {
@@ -19,7 +27,8 @@ class ItemsContainer extends Component {
     } else {
       let items = this.props.data.items;
       if (this.props.filterValues.length) {
-        items = this.props.data.items.filter(item => (item.tags.find(tag => this.props.filterValues.includes(tag))));
+        items = this.props.data.items.filter(item => (item.tags.find(tag => this.props.filterValues.includes(tag.title.trim()))));
+        //items = this.props.data.items.filter(item => this.testTags(item.tags));
       }
       const childElements = items.map(item => <ItemCard item={item} key={item.id} />);
       child = (
@@ -47,28 +56,30 @@ function mapStateToProps(store) {
   };
 }
 
-const fetchItems = gql`
-   query fetchItems {
+const getItems = gql`
+   query getItems {
     items {
       available
       borrower {
         id
         fullname
       }
-      createdOn
+      createdon
       description
       id
-      imageUrl
-      itemOwner {
+      imageurl
+      itemowner {
         id
         fullname
         email
       }
-      tags
+      tags {
+        title
+      }
       title
     } 
   }
 `;
 
-const ItemsContainerWithData = graphql(fetchItems)(ItemsContainer);
+const ItemsContainerWithData = graphql(getItems)(ItemsContainer);
 export default connect(mapStateToProps)(ItemsContainerWithData);

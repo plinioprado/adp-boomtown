@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-
-import ValidatedTextField from '../../components/ValidatedTextField';
-
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import ValidatedTextField from '../../components/ValidatedTextField';
 import './styles.css';
 
 class UserContainer extends Component {
-  // email, fullname, bio
 
   divStyle = {
     width: '100%'
@@ -20,7 +17,6 @@ class UserContainer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submitting user');
     this.props.mutate({
       variables: {
         email: '11@test.com',

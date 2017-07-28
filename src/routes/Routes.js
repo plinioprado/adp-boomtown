@@ -6,7 +6,7 @@ import {
 
 import Login from '../containers/Login';
 import Items from '../containers/Items';
-import ProfilesContainerWithData from '../containers/Profiles';
+import ProfilesContainer from '../containers/Profiles';
 import UserContainerWithData from '../containers/UserContainer';
 import NotFound from '../components/NotFound';
 import Share from '../containers/Share';
@@ -19,7 +19,7 @@ const Routes = () => (
     <Route path="/user" component={UserContainerWithData} />
     <Route path="/items" component={Items} />
     <Route path="/login" component={Login} />
-    <Route path="/profile/:id" component={ProfilesContainerWithData} />
+    <Route path="/profile/:id" component={ProfilesContainer} />
     <Route path="/share" component={Share} />
     <Route component={NotFound} />
   </Switch>

@@ -11,11 +11,11 @@
 // export const renderProfile = (items) => {
 //   const profile = {
 //     user: {
-//       bio: items[0].itemOwner.bio,
-//       borrowingList: items[0].itemOwner.borrowingList,
-//       email: items[0].itemOwner.email,
-//       fullname: items[0].itemOwner.fullname,
-//       borrowedCount: items[0].itemOwner.borrowedCount
+//       bio: items[0].itemowner.bio,
+//       borrowingList: items[0].itemowner.borrowingList,
+//       email: items[0].itemowner.email,
+//       fullname: items[0].itemowner.fullname,
+//       borrowedCount: items[0].itemowner.borrowedCount
 //     },
 //     items: items
 //   };
@@ -43,20 +43,20 @@
 //       const [items, users] = json;
 //       const itemsWithOwners = items
 //         .map(item => {
-//           const itemOwner = users.filter(user => user.id === item.itemOwner);
-//           item.itemOwner = itemOwner[0];
+//           const itemowner = users.filter(user => user.id === item.itemowner);
+//           item.itemowner = itemowner[0];
 //           return item;
 //         })
 //         .map(item => {
 //           const it = item;
 //           it.borrowerName = (it.borrower === null) ? '' : users.filter(u => u.id === it.borrower)[0].fullname;
-//           if (it.borrower === id) borrowingList.push(it.title + ' from ' + it.itemOwner.fullname);
-//           if (it.itemOwner.id === id && it.borrower !== null) borrowedCount += 1;
+//           if (it.borrower === id) borrowingList.push(it.title + ' from ' + it.itemowner.fullname);
+//           if (it.itemowner.id === id && it.borrower !== null) borrowedCount += 1;
 //           return it;
 //         })
-//         .filter(it => (it.itemOwner.id === id));
-//       itemsWithOwners[0].itemOwner.borrowingList = borrowingList;
-//       itemsWithOwners[0].itemOwner.borrowedCount = borrowedCount;
+//         .filter(it => (it.itemowner.id === id));
+//       itemsWithOwners[0].itemowner.borrowingList = borrowingList;
+//       itemsWithOwners[0].itemowner.borrowedCount = borrowedCount;
 //       console.log(itemsWithOwners[0]);
 //       dispatch(renderProfile(itemsWithOwners));
 //     })

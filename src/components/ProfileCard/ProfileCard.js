@@ -6,8 +6,10 @@ import Gravatar from 'react-gravatar';
 import './styles.css';
 
 const ProfileCard = ({ user }) => {
-  const borrowerCount = user.items.filter(it => it.borrower).length;
-  const sharedCount = user.items.length;
+  const borrowerCount = 0;
+  const sharedCount = 0;
+  //const borrowerCount = user.items.filter(it => it.borrower).length;
+  //const sharedCount = user.items.length;
   return (
     <Card className="profile-card">
       <CardText className="profile">

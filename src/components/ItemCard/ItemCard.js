@@ -10,7 +10,7 @@ const ItemCard = ({ item }) => {
     let tags = '';
 
     for (let i = 0; i < list.length; i += 1) {
-      tags += list[i];
+      tags += list[i].title;
       if (i < (list.length - 1)) tags += ', ';
     }
     return tags;
@@ -39,13 +39,13 @@ const ItemCard = ({ item }) => {
 
   return (
     <div className="item-card">
-      <img src={item.imageUrl} alt={item.title} className="item-card-img" />
+      <img src={item.imageurl} alt={item.title} className="item-card-img" />
       { !item.available && <div className="item-status">{getStatus({ available: item.available, borrower: item.borrower })}</div> }
       <div className="item-block">
-        <a href={`/profile/${item.itemOwner.id}`}>
-          <Gravatar email={item.itemOwner.email} className="item-owner-image" />
-          <p className="item-owner-fullname">{item.itemOwner.fullname}</p>
-          <p className="item-createdOn">{getDays(item.createdOn)} days ago</p>
+        <a href={`/profile/${item.itemowner.id}`}>
+          <Gravatar email={item.itemowner.email} className="item-owner-image" />
+          <p className="item-owner-fullname">{item.itemowner.fullname}</p>
+          <p className="item-createdon">{getDays(item.createdon)} days ago</p>
         </a>
       </div>
       <div className="item-block">

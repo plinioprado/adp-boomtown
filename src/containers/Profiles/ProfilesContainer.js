@@ -40,10 +40,12 @@ ProfilesContainer.propTypes = {
     id: PropTypes.string.isRequired
   }).isRequired
 };
+// "bt26ImStpfTd0TGWFK91f9lIaZy1";
+
 
 const fetchUsers = gql`
-  query fetchUser {
-    user (id: "bt26ImStpfTd0TGWFK91f9lIaZy1" ) {
+  query fetchUser ($id: String! ) {
+    user (id: $id) {
       id
       email
       fullname
@@ -53,11 +55,11 @@ const fetchUsers = gql`
       }
       items {
         available
-        createdOn
+        createdon
         description
         id
-        imageUrl
-        itemOwner {
+        imageurl
+        itemowner {
           fullname
           email
         }
@@ -72,5 +74,19 @@ const fetchUsers = gql`
   }
 `;
 
-const ProfilesContainerWithData = graphql(fetchUsers)(ProfilesContainer);
-export default ProfilesContainerWithData;
+
+// export default graphql(fetchUsers, {
+//   options: (ownProps) => ({
+//     variables: {
+//       id: ownprops.match.params.id
+//     }
+//   })
+// })(ProfilesContainer);
+
+export default graphql(fetchUsers, {
+  options: (ownProps) => ({
+    variables: {
+      id: 'HHFm1yqXABRuAmwuuMC6RJYc7fr2'
+    }
+  })
+})(ProfilesContainer);

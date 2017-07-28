@@ -48,8 +48,8 @@ export const selectFilterItems = (filterValues) => {
 //     ))).then(json => {
 //       const [items, users] = json;
 //       const itemsWithOwners = items.map(item => {
-//         const itemOwner = users.filter(user => user.id === item.itemOwner);
-//         item.itemOwner = itemOwner[0];
+//         const itemowner = users.filter(user => user.id === item.itemowner);
+//         item.itemowner = itemowner[0];
 //         return item;
 //       });
 //       dispatch(renderItems(itemsWithOwners));

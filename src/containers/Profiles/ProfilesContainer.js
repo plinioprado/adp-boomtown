@@ -42,10 +42,15 @@ ProfilesContainer.propTypes = {
 };
 // "bt26ImStpfTd0TGWFK91f9lIaZy1";
 
+  // query getUser {
+  //   user (id: "bt26ImStpfTd0TGWFK91f9lIaZy1") {
 
-const fetchUsers = gql`
-  query fetchUser ($id: String! ) {
-    user (id: $id) {
+  // query getUser ($id: String! ) {
+  //   user (id: $id) {
+
+const getUser = gql`
+  query getUser {
+    user (id: "bt26ImStpfTd0TGWFK91f9lIaZy1") {
       id
       email
       fullname
@@ -55,38 +60,41 @@ const fetchUsers = gql`
       }
       items {
         available
+        borrower {
+          id
+          fullname
+        }
         createdon
         description
         id
         imageurl
         itemowner {
+          id
           fullname
           email
         }
-        tags
-        title
-        borrower {
-          id
-          fullname
+        tags {
+          title
         }
-      }
+        title
+      } 
     }
   }
 `;
 
 
-// export default graphql(fetchUsers, {
-//   options: (ownProps) => ({
-//     variables: {
-//       id: ownprops.match.params.id
-//     }
-//   })
-// })(ProfilesContainer);
-
-export default graphql(fetchUsers, {
+export default graphql(getUser, {
   options: (ownProps) => ({
     variables: {
-      id: 'HHFm1yqXABRuAmwuuMC6RJYc7fr2'
+      id: ownProps.match.params.id
     }
   })
 })(ProfilesContainer);
+
+// export default graphql(getUsers, {
+//   options: (ownProps) => ({
+//     variables: {
+//       id: 'HHFm1yqXABRuAmwuuMC6RJYc7fr2'
+//     }
+//   })
+// })(ProfilesContainer);

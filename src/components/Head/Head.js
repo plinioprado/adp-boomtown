@@ -3,8 +3,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { updateAuthState } from '../../actions/auth';
 import ItemFilterMenu from '../../containers/ItemFilterMenu';
 import logo from '../../images/boomtown-logo.svg';
 
@@ -13,10 +13,10 @@ import './styles.css';
 const Head = ({ pathname }) => {
   const leftElements = (
     <div className="headerbar-left">
-      <a href="/">
+      <Link to="/">
         <img src={logo} alt="Boomtown" className="headerbar-logo" />
-      </a>
-      {(pathname === '/' || pathname === '/items') &&
+      </Link>
+      { pathname === '/' &&
         <div className="headerbar-select">
           <ItemFilterMenu className="headerBar-select" />
         </div>
@@ -26,14 +26,16 @@ const Head = ({ pathname }) => {
 
   const rightElements = (
     <div className="headerbar-right">
-      <a href="/profile/TyHcYnSocuOg6PmWQivgxerTLcq2">
+      <Link to="/profile/TyHcYnSocuOg6PmWQivgxerTLcq2">
         <RaisedButton label="MY PROFILE" primary />
-      </a>
+      </Link>
+      <Link to="/login">
       <RaisedButton
         label="LOGOUT"
         secondary
         className="btn-logout"
       />
+      </Link>
     </div>
   );
 

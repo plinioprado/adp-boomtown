@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -18,10 +19,12 @@ const Layout = ({ children, pathname }) => (
       {children}
     </div>
     {
-      false && (
-      <FloatingActionButton backgroundColor="#000" className="item-list-button">
-        <ContentAdd />
-      </FloatingActionButton>)
+      pathname === '/' && (
+      <Link to="/share">
+        <FloatingActionButton backgroundColor="#000" className="item-list-button">
+          <ContentAdd />
+        </FloatingActionButton>
+      </Link>)
     }
     <footer className="appFooter">
       <Foot />

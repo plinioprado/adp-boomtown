@@ -8,8 +8,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { ApolloProvider } from 'react-apollo';
 import client from './config/apolloClient';
 
-
-import store from './store/store';
+import store from './redux/store';
 import registerServiceWorker from './registerServiceWorker';
 import muiTheme from './config/theme';
 import Layout from './components/Layout';

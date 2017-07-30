@@ -7,9 +7,10 @@
     "url": "https://github.com/plinioprado/boomtown"
   },
   "dependencies": {
+    "apollo-client": "^1.9.0-1",
     "concurrently": "^3.5.0",
     "dotenv": "^4.0.0",
-    "firebase": "^4.1.5",
+    "firebase": "^4.2.0",
     "graphql-tag": "^2.4.2",
     "history": "^4.6.3",
     "json-server": "^0.10.1",

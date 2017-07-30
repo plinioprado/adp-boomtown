@@ -28,7 +28,6 @@ class ItemsContainer extends Component {
       let items = this.props.data.items;
       if (this.props.filterValues.length) {
         items = this.props.data.items.filter(item => (item.tags.find(tag => this.props.filterValues.includes(tag.title.trim()))));
-        //items = this.props.data.items.filter(item => this.testTags(item.tags));
       }
       const childElements = items.map(item => <ItemCard item={item} key={item.id} />);
       child = (
@@ -43,7 +42,7 @@ class ItemsContainer extends Component {
 }
 
 ItemsContainer.propTypes = {
-  filterValues: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterValues: PropTypes.arrayOf(PropTypes.object).isRequired,
   data: PropTypes.objectOf({
     data: PropTypes.array,
     loaded: PropTypes.bool

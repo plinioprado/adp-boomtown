@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 
 import ValidatedTextField from '../../components/ValidatedTextField';
 import './styles.css';
@@ -96,5 +98,5 @@ const addUser = gql`
   }
 `;
 
-const SignInContainerWithData = graphql(addUser)(SignInContainer);
-export default SignInContainerWithData;
+export default graphql(addUser)(SignInContainer);
+

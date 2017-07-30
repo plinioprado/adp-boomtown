@@ -10,7 +10,7 @@ import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
 import './styles.css';
 
-class ProfilesContainer extends Component {
+class ProfileContainer extends Component {
 
   render() {
     let child;
@@ -33,24 +33,16 @@ class ProfilesContainer extends Component {
   }
 }
 
-ProfilesContainer.propTypes = {
+ProfileContainer.propTypes = {
   data: PropTypes.objectOf({
     loading: PropTypes.bool.isRequired,
-    user: PropTypes.any,
-    id: PropTypes.string.isRequired
+    user: PropTypes.any
   }).isRequired
 };
-// "bt26ImStpfTd0TGWFK91f9lIaZy1";
-
-  // query getUser {
-  //   user (id: "bt26ImStpfTd0TGWFK91f9lIaZy1") {
-
-  // query getUser ($id: String! ) {
-  //   user (id: $id) {
 
 const getUser = gql`
-  query getUser {
-    user (id: "bt26ImStpfTd0TGWFK91f9lIaZy1") {
+ query getUser ($id: ID! ) {
+     user (id: $id) {
       id
       email
       fullname
@@ -82,19 +74,6 @@ const getUser = gql`
   }
 `;
 
-
 export default graphql(getUser, {
-  options: (ownProps) => ({
-    variables: {
-      id: ownProps.match.params.id
-    }
-  })
-})(ProfilesContainer);
-
-// export default graphql(getUsers, {
-//   options: (ownProps) => ({
-//     variables: {
-//       id: 'HHFm1yqXABRuAmwuuMC6RJYc7fr2'
-//     }
-//   })
-// })(ProfilesContainer);
+  options: (props) => ({ variables: { id: props.match.params.id } }),
+})(ProfileContainer);

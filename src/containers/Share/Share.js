@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import { FirebaseStorage, FirebaseAuth, FirebaseStorage2, FirebaseAuth2 } from '../../config/firebase';
+import { FirebaseStorage } from '../../config/firebase';
 import './styles.css';
 
 class Share extends Component {
@@ -11,9 +11,9 @@ class Share extends Component {
   }
 
   handleImageUpload = () => {
-    const cloud = FirebaseStorage2.ref();
+    const cloud = FirebaseStorage.ref();
     const userId = 'AIzaSyDh9oYFLiFAgN2NnP2xALy_ZCgIxsGQ43M';
-    // const userId = FirebaseAuth2.currentUser.uid;
+    // const userId = FirebaseAuth.currentUser.uid;
     const fileName = this.fileInput.files[0].name;
     // this.props.dispatch(startImageUpload());
     cloud.child(`images/${userId}/${fileName}`)
@@ -31,7 +31,6 @@ class Share extends Component {
   uploadInput = '';
 
   render() {
-
     return (
       <div className="share">
         <form>

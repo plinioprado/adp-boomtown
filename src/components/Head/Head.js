@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FirebaseAuth } from '../../config/firebase';
 
 import ItemFilterMenu from '../../containers/ItemFilterMenu';
 import logo from '../../images/boomtown-logo.svg';
@@ -11,6 +12,9 @@ import logo from '../../images/boomtown-logo.svg';
 import './styles.css';
 
 const Head = ({ pathname }) => {
+
+  const userId = FirebaseAuth.currentUser;
+
   const leftElements = (
     <div className="headerbar-left">
       <Link to="/">
@@ -26,15 +30,15 @@ const Head = ({ pathname }) => {
 
   const rightElements = (
     <div className="headerbar-right">
-      <Link to="/profile/TyHcYnSocuOg6PmWQivgxerTLcq2">
+      <Link to="/profile/{userId}">
         <RaisedButton label="MY PROFILE" primary />
       </Link>
       <Link to="/login">
-      <RaisedButton
-        label="LOGOUT"
-        secondary
-        className="btn-logout"
-      />
+        <RaisedButton
+          label="LOGOUT"
+          secondary
+          className="btn-logout"
+        />
       </Link>
     </div>
   );
@@ -49,12 +53,12 @@ const Head = ({ pathname }) => {
 };
 
 Head.propTypes = {
-  pathname: PropTypes.string.isRequired
+  pathname: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(store) {
   return {
-    pathname: store.router.location.pathname
+    pathname: store.router.location.pathname,
   };
 }
 

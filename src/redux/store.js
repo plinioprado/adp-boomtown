@@ -5,7 +5,7 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
 import client from '../config/apolloClient';
-import { reducer } from './../reducers';
+import { reducer } from './reducers';
 import { history } from '../index';
 
 const reduxRouter = routerMiddleware(history);
@@ -15,8 +15,8 @@ const store = createStore(
   composeWithDevTools(
   applyMiddleware(
     logger,
-    thunk,
     reduxRouter,
+    thunk,
     client.middleware()
     )
   )

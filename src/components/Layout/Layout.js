@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+
 import Foot from '../Foot';
 import Head from '../Head';
-
 import './styles.css';
 
 const Layout = ({ children, pathname }) => (
@@ -19,7 +18,7 @@ const Layout = ({ children, pathname }) => (
       {children}
     </div>
     {
-      pathname === '/' && (
+      (pathname !== '/login') && (
       <Link to="/share">
         <FloatingActionButton backgroundColor="#000" className="item-list-button">
           <ContentAdd />

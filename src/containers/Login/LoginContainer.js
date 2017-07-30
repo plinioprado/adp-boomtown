@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect,  } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+// import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
 
-import { showLoginError } from '../../actions/auth';
+import { updateAuthState, showLoginError } from '../../redux/auth';
 import Login from './Login';
-import firebase from '../../config/firebase';
-
+import { FirebaseAuth } from '../../config/firebase';
 
 class LoginContainer extends Component {
+
+  componentDidMount() {
+    FirebaseAuth.signOut();
+    this.props.dispatch(updateAuthState(null));
+  }
 
   login = (event) => {
     event.preventDefault();
     const email = 'john@example.com';
     const password = '1q2w3e';
-    // TODO move this to a thumk
-    firebase.FirebaseAuth.signInWithEmailAndPassword(email, password)
-      .then(res => {
-        console.log('logged', res);
+    // TODO move this to a thunk
+    FirebaseAuth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.props.dispatch(updateAuthState({ id: FirebaseAuth.currentUser.uid }));
       })
       .catch((error) => {
-        console.loc(error);
+        console.log(error);
         if (error.code === 'auth/user-not-found') {
           this.props.dispatch(showLoginError(error.code)); // SHOW_JOIN_MODAL in the future
         } else {
@@ -31,17 +35,18 @@ class LoginContainer extends Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: '/' };
-    // const { authenticated, loginFormValues, ...props } = this.props;
+    const { authenticated, loginFormValues, ...props } = this.props;
 
-    if (this.props.profile) {
+    if (this.props.loggedUser) {
       return (
-        <Redirect to={from} />
+        <Redirect to="/" />
       );
     }
 
     return (
       <Login
+        {...props}
+        join={this.join}
         login={(e) => {
           e.preventDefault();
           this.login(e);
@@ -51,21 +56,21 @@ class LoginContainer extends Component {
   }
 }
 
-function mapStateToProps(store) {
-  return {
-    profile: store.auth.profile,
-  };
-}
-
-// LoginContainer.defaultProps = {
-//   location: { from: '/' },
-//   mutate: null,
-// };
+LoginContainer.defaultProps = {
+  location: { from: '/' },
+  mutate: null,
+  loggedUser: null
+};
 
 LoginContainer.propTypes = {
-  location: PropTypes.object,
-  // mutate: PropTypes.func
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  loggedUser: PropTypes.objectOf(PropTypes.any)
 };
+
+function mapStateToProps(store) {
+  return {
+    loggedUser: store.auth.loggedUser
+  };
+}
 
 export default connect(mapStateToProps)(LoginContainer);

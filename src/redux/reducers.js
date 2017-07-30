@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import client from '../config/apolloClient';
 
-import ItemsReducer from '../redux/items';
-import AuthReducer from '../redux/auth';
+import AuthReducer from './auth';
+import ItemsReducer from './items';
 
 export const reducer = combineReducers({
   auth: AuthReducer,

@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-
-import ValidatedTextField from '../../components/ValidatedTextField';
-import './styles.css';
+import SignIn from './SignIn';
+import './SignIn.css';
 
 class SignInContainer extends Component {
 
@@ -17,7 +14,9 @@ class SignInContainer extends Component {
     width: '100%'
   }
 
-  handleSubmit = (event) => {
+  nextPath = null;
+
+  signin = (event) => {
     event.preventDefault();
     this.props.mutate({
       variables: {
@@ -29,48 +28,67 @@ class SignInContainer extends Component {
     })
     .then(({ data }) => {
       console.log('got data', data);
+      this.nextPath = '/';
     })
     .catch((error) => {
       console.log('error:', error);
+      this.nextPath = 'error';
     });
-  }
+  };
 
   render() {
+    if (this.nextPath) {
+      return (
+        <Redirect to={this.nextPath} />
+      );
+    }
+
     return (
-      <Paper zDepth={5} className="user">
-        <div className="formContainer">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <div>
-              <ValidatedTextField label="Email" name="email" />
-            </div>
-            <div>
-              <ValidatedTextField label="FullName" name="fullname" />
-            </div>
-            <div>
-              <ValidatedTextField label="Pass" name="pass" />
-            </div>
-            <div style={this.divStyle}>
-              <TextField
-                style={this.divStyle}
-                hintText="Message Field"
-                floatingLabelText="Bio"
-                multiLine
-                rows={3}
-              />
-            </div>
-            <RaisedButton
-              className="enterButton"
-              primary
-              fullWidth
-              type="submit"
-            >
-              Enter
-            </RaisedButton>
-          </form>
-        </div>
-      </Paper>
+      <div className="signin-container">
+        <SignIn
+          user={this.join}
+          handleSignin={() => this.signin()}
+        />
+      </div>
     );
   }
+
+//   render() {
+//     return (
+//       <Paper zDepth={5} className="user">
+//         <div className="formContainer">
+//           <form autoComplete="off" onSubmit={this.handleSubmit}>
+//             <div>
+//               <ValidatedTextField label="Email" name="email" />
+//             </div>
+//             <div>
+//               <ValidatedTextField label="FullName" name="fullname" />
+//             </div>
+//             <div>
+//               <ValidatedTextField label="Pass" name="pass" />
+//             </div>
+//             <div style={this.divStyle}>
+//               <TextField
+//                 style={this.divStyle}
+//                 hintText="Message Field"
+//                 floatingLabelText="Bio"
+//                 multiLine
+//                 rows={3}
+//               />
+//             </div>
+//             <RaisedButton
+//               className="enterButton"
+//               primary
+//               fullWidth
+//               type="submit"
+//             >
+//               Enter
+//             </RaisedButton>
+//           </form>
+//         </div>
+//       </Paper>
+//     );
+//   }
 }
 
 SignInContainer.propTypes = {

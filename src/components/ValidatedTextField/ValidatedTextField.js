@@ -18,18 +18,26 @@ const styles = {
   }
 };
 
-const ValidatedTextField = ({ label }) => (
+const ValidatedTextField = ({ label, rows }) => (
   <TextField
     style={styles.fieldStyle}
     hintText={label}
     floatingLabelText={label}
     errorStyle={styles.errorStyle}
     underlineFocusStyle={styles.underlineStyle}
+    multiLine={(rows * 1 > 1)}
+    rows={rows * 1}
   />
 );
 
+ValidatedTextField.defaultProps = {
+  rows: '1'
+};
+
 ValidatedTextField.propTypes = {
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  rows: PropTypes.string
+
 };
 
 export default ValidatedTextField;

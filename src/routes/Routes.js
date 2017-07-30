@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Login from '../containers/Login';
 import Items from '../containers/Items';
-import Profile from '../containers/Profiles';
+import Profile from '../containers/Profile';
 import SignIn from '../containers/SignIn';
 import NotFound from '../components/NotFound';
 import Share from '../containers/Share';

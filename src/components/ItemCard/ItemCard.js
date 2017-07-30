@@ -2,7 +2,7 @@ import React from 'react';
 import Gravatar from 'react-gravatar';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import './styles.css';
+import './ItemCard.css';
 
 const ItemCard = ({ item }) => {
   // Obs: There are several function here, not sent fo Container because are presentational

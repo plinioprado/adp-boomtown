@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FirebaseAuth } from '../../config/firebase';
+// import { FirebaseAuth } from '../../config/firebase';
 
 import ItemFilterMenu from '../../containers/ItemFilterMenu';
 import logo from '../../images/boomtown-logo.svg';
 
-import './styles.css';
+import './Head.css';
 
 const Head = ({ pathname }) => {
 
-  const userId = FirebaseAuth.currentUser;
+  // const userId = FirebaseAuth.currentUser;
+  const userId = 'tU5JzFUwBjfwUjygIU55gJOeraZ2';
 
   const leftElements = (
     <div className="headerbar-left">

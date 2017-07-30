@@ -7,7 +7,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import Foot from '../Foot';
 import Head from '../Head';
-import './styles.css';
+import './Layout.css';
 
 const Layout = ({ children, pathname }) => (
   <div className="appContentWrapper">

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card, CardText } from 'material-ui/Card';
 import PropTypes from 'prop-types';
 import Gravatar from 'react-gravatar';
+import { Card, CardText } from 'material-ui/Card';
 
-import './styles.css';
+import './Profile.css';
 
 const ProfileCard = ({ user }) => {
   const borrowerCount = user.items.filter(it => it.borrower).length;

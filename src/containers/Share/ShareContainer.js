@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import { FirebaseStorage } from '../../config/firebase';
-import './styles.css';
+import gql from 'graphql-tag';
 
-class Share extends Component {
+import { FirebaseStorage } from '../../config/firebase';
+
+import './Share.css';
+
+class ShareContainer extends Component {
 
   selectImage = (fileInput) => {
     this.fileInput = this.fileInput || fileInput;
@@ -51,4 +54,32 @@ class Share extends Component {
   }
 }
 
-export default Share;
+const addItem = gql`
+   mutation addItem (
+    $title: String!
+    $description: String!
+    $imageurl: String
+    $tags: [AssignedTags]
+    $itemowner: ID!
+  ) {
+    addItem(
+      title: $title
+      description: $description
+      imageurl: $imageurl
+      tags: $tags
+      itemowner: $itemowner
+    ) {
+      title
+      description
+      imageurl
+      tags
+      itemowner {
+        id
+      }
+    }
+  }
+`;
+
+console.log(addItem);
+
+export default ShareContainer;

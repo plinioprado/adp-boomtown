@@ -1,0 +1,45 @@
+.signin {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 450px;
+  min-width: 90%;
+  padding: 30px;
+}
+
+.signin-container {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h3 {
+  font-size: 22px !important;
+  font-weight: 400 !important;
+  margin-bottom: 20px !important;
+}
+
+p {
+  color: rgba(38, 50, 56, 0.6)
+}
+
+.footer {
+  padding-top: 30px;
+  text-align: right;
+}
+
+.footer>* {
+  margin-left: 15px;
+}
+
+@media(min-width: 576px) {
+
+  .signin-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .signin {
+    min-width: 50%;
+  }
+
+}

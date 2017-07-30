@@ -5,10 +5,10 @@ import Masonry from 'react-masonry-component';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import ProfileCard from '../../components/ProfileCard';
+import Profile from './Profile';
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
-import './styles.css';
+import './Profile.css';
 
 class ProfileContainer extends Component {
 
@@ -23,7 +23,7 @@ class ProfileContainer extends Component {
       const childElements = user.items.map(item => <ItemCard item={item} key={item.id} />);
       child = (
         <div className="profiles-container">
-          <ProfileCard user={user} />
+          <Profile user={user} />
           <Masonry>{childElements}</Masonry>
         </div>
       );

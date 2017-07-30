@@ -8,17 +8,9 @@ import gql from 'graphql-tag';
 
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
-import './styles.css';
+import './Items.css';
 
 class ItemsContainer extends Component {
-
-  // testTags = (tags) => {
-  //   let ok = false;
-  //   tags.forEach((tag) => {
-  //     if (this.props.filterValues.includes(tag.title)) ok = true;
-  //   });
-  //   return ok;
-  // }
 
   render() {
     let child;

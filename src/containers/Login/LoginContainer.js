@@ -51,6 +51,7 @@ class LoginContainer extends Component {
           this.login(e);
         }
         }
+        user={{ email: 'john@example.com' }}
       />
     );
   }

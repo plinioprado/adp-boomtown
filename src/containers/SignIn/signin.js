@@ -35,14 +35,6 @@ const SignIn = ({ email, pass, handleSignin }) => {
             </Link>
             <RaisedButton label="JOIN!" primary type="submit" />
           </div>
-          {/* <RaisedButton
-            className="enterButton"
-            primary
-            fullWidth
-            type="submit"
-            Enter
-          </RaisedButton>          > */}
-
         </form>
       </div>
     </Paper>

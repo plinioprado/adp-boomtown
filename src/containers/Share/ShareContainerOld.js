@@ -1,26 +1,12 @@
 import React, { Component } from 'react';
-// import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import gql from 'graphql-tag';
 
 import { FirebaseStorage } from '../../config/firebase';
-import Share from './Share';
-import ItemCard from './ItemCard';
 
 import './Share.css';
 
 class ShareContainer extends Component {
-
-  item = {
-
-    title: 'Amazing Item Title',
-    description: 'Profound item description',
-    imageurl: '../../images/item-placeholder.jpg',
-    itemowner: {
-      id: 'tU5JzFUwBjfwUjygIU55gJOeraZ2',
-      email: 'mackenzie@redacademy.com',
-      fullname: 'Mackenzie Kieran'
-    }
-  }
 
   selectImage = (fileInput) => {
     this.fileInput = this.fileInput || fileInput;
@@ -29,7 +15,7 @@ class ShareContainer extends Component {
 
   handleImageUpload = () => {
     const cloud = FirebaseStorage.ref();
-    const userId = 'tU5JzFUwBjfwUjygIU55gJOeraZ2';
+    const userId = 'AIzaSyDh9oYFLiFAgN2NnP2xALy_ZCgIxsGQ43M';
     // const userId = FirebaseAuth.currentUser.uid;
     const fileName = this.fileInput.files[0].name;
     // this.props.dispatch(startImageUpload());
@@ -49,19 +35,20 @@ class ShareContainer extends Component {
 
   render() {
     return (
-      <div className="share-container" >
-        <div className="share-card">
-          <ItemCard
-            item={this.item}
+      <div className="share">
+        <form>
+          <RaisedButton
+            label="Select an Image"
+            onClick={() => this.selectImage(this.uploadInput)}
           />
-        </div>
-        <div className="share-form">
-          <Share
-            item={this.item}
-            selectImage={this.selectImage}
-            uploadInput={this.uploadInput}
+          <input
+            onChange={this.handleImageUpload}
+            ref={(input) => { this.uploadInput = input; }}
+            hidden
+            type="file"
+            id="input"
           />
-        </div>
+        </form>
       </div>
     );
   }
@@ -96,3 +83,5 @@ const addItem = gql`
 console.log(addItem);
 
 export default ShareContainer;
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help

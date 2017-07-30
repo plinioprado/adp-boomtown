@@ -1,3 +1,30 @@
-.share {
-  padding: 10px;
+.share-container {
+  width: 100%;
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.share-card {
+  width: 40%;
+  padding-left: 30px;
+}
+
+.share-form {
+  margin-left: 5%;
+  width: 50%;
+  padding-right: 30px;
+}
+
+.share-form h4 {
+  margin-top: 15px;
+  color: #000;
+  font-size: 16px;
+}
+
+.share-form p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 16px;
+  color: #fff !important;
 }

@@ -9,7 +9,7 @@ import bottomLeft from '../../images/home-bl.svg';
 import topRight from '../../images/home-tr.svg';
 import './Login.css';
 
-const Login = ({ login }) => (
+const Login = ({ login, user }) => (
 
   <div className="page login">
     <div className="logo">
@@ -40,6 +40,9 @@ const Login = ({ login }) => (
               Enter
             </RaisedButton>
           </form>
+        <div>
+          userName={user.email}
+        </div>
         </div>
       </Paper>
     </div>
@@ -47,7 +50,8 @@ const Login = ({ login }) => (
 );
 
 Login.propTypes = {
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 export default Login;

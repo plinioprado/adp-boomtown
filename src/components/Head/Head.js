@@ -14,7 +14,6 @@ import './Head.css';
 const Head = ({ pathname }) => {
 
   // const userId = FirebaseAuth.currentUser;
-  const userId = 'tU5JzFUwBjfwUjygIU55gJOeraZ2';
 
   const leftElements = (
     <div className="headerbar-left">
@@ -31,7 +30,7 @@ const Head = ({ pathname }) => {
 
   const rightElements = (
     <div className="headerbar-right">
-      <Link to="/profile/{userId}">
+      <Link to="/profile/tU5JzFUwBjfwUjygIU55gJOeraZ2">
         <RaisedButton label="MY PROFILE" primary />
       </Link>
       <Link to="/login">

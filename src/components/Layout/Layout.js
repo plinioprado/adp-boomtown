@@ -18,7 +18,7 @@ const Layout = ({ children, pathname }) => (
       {children}
     </div>
     {
-      (pathname !== '/login') && (
+      (pathname === '/') && (
       <Link to="/share">
         <FloatingActionButton backgroundColor="#000" className="item-list-button">
           <ContentAdd />

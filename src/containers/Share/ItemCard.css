@@ -1,0 +1,58 @@
+
+.item-card2 {
+  margin-top: 30px;
+  margin: 8px;
+  width: 100%;
+  font-size: 14px;
+  padding: 0;
+}
+.item-card2>div {
+  width: 100% !important;
+}
+
+.card-text2 {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+item-img2 {
+  width: 100%;
+}
+
+.item-owner-image2 {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 16px;
+  float: left;
+}
+
+.item-owner-fullname2 {
+  margin-top: 15px;
+  color: rgba(38, 50, 56, 0.87);
+  font-size: 15px;
+}
+
+.item-createdon2 {
+  color: rgba(38, 50, 56, 0.54);
+}
+
+.item-title2 {
+  font-size: 24px;
+  color: rgba(38, 50, 56, 0.87);
+  line-height: 36px;
+  margin: 0;
+  padding: 0;
+  padding-top: 30px;
+}
+
+.item-description2 {
+  padd: 0;
+  margin: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.item-tags2 {
+  color: rgba(38, 50, 56, 0.54);
+}

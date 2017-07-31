@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
+import ItemsBorrowModal from './ItemsBorrowModal';
 import './Items.css';
 
 class ItemsContainer extends Component {
@@ -25,6 +26,7 @@ class ItemsContainer extends Component {
       child = (
         <div className="items-container">
           <Masonry>{childElements}</Masonry>
+          <ItemsBorrowModal />
         </div>
       );
     }

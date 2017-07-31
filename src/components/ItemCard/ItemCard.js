@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import './ItemCard.css';
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item, showBorrowModal }) => {
   // Obs: There are several function here, not sent fo Container because are presentational
   const getTags = (list) => {
     let tags = '';
@@ -33,10 +33,6 @@ const ItemCard = ({ item }) => {
     return status;
   };
 
-  const buttonStyle = {
-    boxShadow: null
-  };
-
   return (
     <div className="item-card">
       <img src={item.imageurl} alt={item.title} className="item-card-img" />
@@ -55,7 +51,20 @@ const ItemCard = ({ item }) => {
       <div className="item-block">
         <p>{item.description}</p>
       </div>
-      { item.available && <RaisedButton label="BORROW" secondary style={buttonStyle} className="item-button" /> }
+      {
+        item.available &&
+        <RaisedButton
+          label="BORROW"
+          secondary
+          className="item-button"
+          onClick={() => showBorrowModal({
+            id: item.id,
+            title: item.title,
+            ownerName: item.itemowner.fullname
+          }
+          )}
+        />
+      }
     </div>
   );
 };

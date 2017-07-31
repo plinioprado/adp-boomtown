@@ -9,9 +9,24 @@ import gql from 'graphql-tag';
 import ItemCard from '../../components/ItemCard';
 import Loader from '../../components/Loader';
 import ItemsBorrowModal from './ItemsBorrowModal';
+import { showBorrowModal } from '../../redux/items';
 import './Items.css';
 
+
 class ItemsContainer extends Component {
+
+  getBorrowItem(id) {
+    const item = this.props.data.items.find(it => (it.id === id));
+    return {
+      id: id,
+      title: item.title,
+      ownerName: item.itemowner.fullname
+    }
+  }
+  showBorrowModal = (modalItem) => {
+    console.log('dispatching');
+    this.props.dispatch(showBorrowModal(modalItem.id));
+  };
 
   render() {
     let child;
@@ -22,11 +37,13 @@ class ItemsContainer extends Component {
       if (this.props.filterValues.length) {
         items = this.props.data.items.filter(item => (item.tags.find(tag => this.props.filterValues.includes(tag.title.trim()))));
       }
-      const childElements = items.map(item => <ItemCard item={item} key={item.id} />);
+      const childElements = items.map(item => <ItemCard item={item} showBorrowModal={() => this.showBorrowModal(item)} key={item.id} />);
       child = (
         <div className="items-container">
           <Masonry>{childElements}</Masonry>
-          <ItemsBorrowModal />
+          { (this.props.borrowItem.id * 1 !== 0) &&
+            <ItemsBorrowModal modalItem={this.getBorrowItem(this.props.borrowItem.id)} />
+          }
         </div>
       );
     }
@@ -40,12 +57,15 @@ ItemsContainer.propTypes = {
   data: PropTypes.objectOf({
     data: PropTypes.array,
     loaded: PropTypes.bool
-  }).isRequired
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  borrowItem: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 function mapStateToProps(store) {
   return {
-    filterValues: store.items.filterValues
+    filterValues: store.items.filterValues,
+    borrowItem: store.items.borrowModal
   };
 }
 
@@ -71,6 +91,18 @@ const getItems = gql`
       }
       title
     } 
+  }
+`;
+
+const updItemBorrower = gql`
+   mutation updItemBorrower (
+    $id: ID!
+    $borrower: ID!
+  ) {
+    updItemBorrower(
+      id: $id
+      borrower: $borrower
+    ) 
   }
 `;
 

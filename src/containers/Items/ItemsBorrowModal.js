@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+
 import './Items.css';
 
 class ItemsBorrowModal extends React.Component {
   state = {
-    open: true,
+    open: (true),
   };
 
   handleOpen = () => {
@@ -43,11 +45,15 @@ class ItemsBorrowModal extends React.Component {
           modal
           open={this.state.open}
         >
-          Do you want to request to borrow the “Lovely Image” from Mackenzie Kieran.
+          Do you want to request to borrow the “{this.props.modalItem.title}” from {this.props.modalItem.ownerName}.
         </Dialog>
       </div>
     );
   }
 }
 
-export default ItemsBorrowModal;
+ItemsBorrowModal.propTypes = {
+  modalItem: PropTypes.objectOf(PropTypes.any).isRequired
+};
+
+export default (ItemsBorrowModal);

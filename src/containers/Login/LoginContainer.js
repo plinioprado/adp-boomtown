@@ -10,8 +10,8 @@ import { FirebaseAuth } from '../../config/firebase';
 class LoginContainer extends Component {
 
   componentDidMount() {
-    FirebaseAuth.signOut();
-    this.props.dispatch(updateAuthState(null));
+    // FirebaseAuth.signOut();
+    // this.props.dispatch(updateAuthState(null));
   }
 
   login = (event) => {

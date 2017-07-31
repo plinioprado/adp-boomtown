@@ -45,12 +45,11 @@ graphql-tag
 ** json-server (not used in V0.2)
 
 # Main Pendencies in the version 0.2
-* Complete Share page
-* Create Borrow Modal
-* Complete Login/SignIn 
-* Reactivate Auth
+* Reactivate Auth and restablish login 
+* Create mutations and dispatches to links from Forms to GraphQL inputs and updates
+* Other improvements in form valiatsion and connection with redux
 
 # Main issues
-* Not seeing Firebase Auth logged user, authentication temporarily disabled
-* Original Firebase had to be migrated to another account, could repeat
-* Routing Push() not working
+* FirebaseAuth.loggedUser unavailable and/or disconnecting
+* Original Firebase had to be migrated to another account, this could repeat
+* No test with Routing Push() worked

@@ -3,57 +3,71 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { updateAuthState, showLoginError } from '../../redux/auth';
+import { updateEmailField, updatePasswordField } from '../../redux/forms';
+import { updateAuthState, showLoginError, redirectSignin } from '../../redux/auth';
 import Login from './Login';
 import { FirebaseAuth } from '../../config/firebase';
 
 class LoginContainer extends Component {
 
-  componentDidMount() {
-    // FirebaseAuth.signOut();
-    // this.props.dispatch(updateAuthState(null));
+  handleEmail = (event) => {
+    this.props.dispatch(updateEmailField(event.target.value));
   }
 
-  login = (event) => {
-    event.preventDefault();
-    const email = 'john@example.com';
-    const password = '1q2w3e';
-    // TODO move this to a thunk
-    FirebaseAuth.signInWithEmailAndPassword(email, password)
+  handlePassword = (event) => {
+    this.props.dispatch(updatePasswordField(event.target.value));
+  }
+
+  login = (args) => {
+    console.log('will login');
+    console.log(args.email);
+    console.log(args.password);
+    // const email = 'john@example.com';
+    // const password = '1q2w3e';
+    FirebaseAuth.signInWithEmailAndPassword(args.email, args.password)
       .then(() => {
+        console.log('success!');
         this.props.dispatch(updateAuthState({ id: FirebaseAuth.currentUser.uid }));
       })
       .catch((error) => {
-        console.log(error);
-        if (error.code === 'auth/user-not-found') {
-          this.props.dispatch(showLoginError(error.code)); // SHOW_JOIN_MODAL in the future
+        if (error.message === 'signInWithEmailAndPassword failed: First argument "email" must be a valid string.') {
+          console.log('unknown');
+          this.props.dispatch(redirectSignin(true));
         } else {
+          console.log('invalid');
           this.props.dispatch(showLoginError(error.code));
         }
       });
   }
 
   render() {
+
     const { authenticated, loginFormValues, ...props } = this.props;
 
     if (this.props.loggedUser) {
+
+      return (<Redirect to="/" />);
+
+    } else if (this.props.redirectedSignin) {
+
+      this.props.dispatch(redirectSignin(false));
+      return (<Redirect to="/signin" />);
+
+    } else {
+
       return (
-        <Redirect to="/" />
+        <Login
+          {...props}
+          join={this.join}
+          login={(e) => {
+            e.preventDefault();
+            this.login({ email: this.props.forms.emailField, password: this.props.forms.passwordField });
+          }}
+          handleEmail={(e) => { this.handleEmail(e); }}
+          handlePassword={(e) => { this.handlePassword(e); }}
+        />
       );
     }
-
-    return (
-      <Login
-        {...props}
-        join={this.join}
-        login={(e) => {
-          e.preventDefault();
-          this.login(e);
-        }
-        }
-        user={{ email: 'john@example.com' }}
-      />
-    );
   }
 }
 
@@ -65,12 +79,16 @@ LoginContainer.defaultProps = {
 
 LoginContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  loggedUser: PropTypes.objectOf(PropTypes.any)
+  loggedUser: PropTypes.objectOf(PropTypes.any),
+  redirectedSignin: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(store) {
   return {
-    loggedUser: store.auth.loggedUser
+    loggedUser: store.auth.loggedUser,
+    // authenticated: store.login.userProfile,
+    forms: store.forms,
+    redirectedSignin: store.auth.redirectedSignin
   };
 }
 

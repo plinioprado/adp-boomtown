@@ -20,8 +20,9 @@ class ItemsContainer extends Component {
     return {
       id: id,
       title: item.title,
-      ownerName: item.itemowner.fullname
-    }
+      ownerName: item.itemowner.fullname,
+      borrower: 'tU5JzFUwBjfwUjygIU55gJOeraZ2'
+    };
   }
   showBorrowModal = (modalItem) => {
     console.log('dispatching');
@@ -91,18 +92,6 @@ const getItems = gql`
       }
       title
     } 
-  }
-`;
-
-const updItemBorrower = gql`
-   mutation updItemBorrower (
-    $id: ID!
-    $borrower: ID!
-  ) {
-    updItemBorrower(
-      id: $id
-      borrower: $borrower
-    ) 
   }
 `;
 

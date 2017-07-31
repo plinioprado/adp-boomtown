@@ -93,6 +93,6 @@ const addItem = gql`
   }
 `;
 
-console.log(addItem);
+console.log(addItem); // TODO: Replace por mutation dispatch
 
 export default ShareContainer;

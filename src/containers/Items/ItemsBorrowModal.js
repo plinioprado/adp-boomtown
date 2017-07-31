@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import './Items.css';
 
@@ -24,7 +26,6 @@ class ItemsBorrowModal extends React.Component {
       <FlatButton
         label="CANCEL"
         primary
-        onTouchTap={this.handleClose}
         onClick={this.handleClose}
       />,
       <FlatButton
@@ -32,13 +33,12 @@ class ItemsBorrowModal extends React.Component {
         label="BORROW"
         primary
         disabled={false}
-        onTouchTap={this.handleClose}
       />
     ];
 
     return (
       <div>
-        <RaisedButton label="Modal Dialog" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Modal Dialog" />
         <Dialog
           title="Borrow Item"
           actions={actions}
@@ -52,8 +52,26 @@ class ItemsBorrowModal extends React.Component {
   }
 }
 
+const updItemBorrower = gql`
+   mutation updItemBorrower (
+    $id: ID!
+    $borrower: ID!
+  ) {
+    updItemBorrower(
+      id: $id
+      borrower: $borrower
+    ) 
+  }
+`;
+
 ItemsBorrowModal.propTypes = {
   modalItem: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
-export default (ItemsBorrowModal);
+export default graphql(updItemBorrower, {
+  options: (props) => ({ variables: {
+    id: props.modalItem.id,
+    borrower: props.modalItem.id
+  } }),
+})(ItemsBorrowModal);
+

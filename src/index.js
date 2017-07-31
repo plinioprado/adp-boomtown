@@ -18,8 +18,6 @@ import './index.css';
 
 export const history = createHistory();
 
-injectTapEventPlugin();
-
 const Boomtown = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
     <ApolloProvider client={client} store={store}>

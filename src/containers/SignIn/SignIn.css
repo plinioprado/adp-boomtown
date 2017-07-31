@@ -3,11 +3,13 @@
   margin-left: auto;
   margin-right: auto;
   height: 450px;
-  min-width: 90%;
+  width: 80%;
+  max-width: 600px;
   padding: 30px;
 }
 
 .signin-container {
+  width: 100%;
   padding-left: 10px;
   padding-right: 10px;
 }

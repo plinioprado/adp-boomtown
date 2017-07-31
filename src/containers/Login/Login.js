@@ -9,7 +9,7 @@ import bottomLeft from '../../images/home-bl.svg';
 import topRight from '../../images/home-tr.svg';
 import './Login.css';
 
-const Login = ({ login, user }) => (
+const Login = ({ login, handleEmail, handlePassword }) => (
 
   <div className="page login">
     <div className="logo">
@@ -26,10 +26,10 @@ const Login = ({ login, user }) => (
         <div className="formContainer">
           <form onSubmit={login} autoComplete="off">
             <div>
-              <ValidatedTextField label="Email" name="email" />
+              <ValidatedTextField onChange={handleEmail} label="Email" name="email" />
             </div>
             <div>
-              <ValidatedTextField label="Password" name="password" />
+              <ValidatedTextField onChange={handlePassword} label="Password" name="password" />
             </div>
             <RaisedButton
               className="enterButton"
@@ -40,9 +40,6 @@ const Login = ({ login, user }) => (
               Enter
             </RaisedButton>
           </form>
-        <div>
-          userName={user.email}
-        </div>
         </div>
       </Paper>
     </div>
@@ -51,7 +48,8 @@ const Login = ({ login, user }) => (
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  user: PropTypes.objectOf(PropTypes.any).isRequired
+  handleEmail: PropTypes.func.isRequired,
+  handlePassword: PropTypes.func.isRequired,
 };
 
 export default Login;
